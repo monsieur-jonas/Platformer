@@ -11,10 +11,17 @@ class TableauZoo extends Tableau{
     }
     create() {
         super.create();
+
+        
         
        
         this.platforms = this.physics.add.staticGroup();
         this.walls = this.physics.add.staticGroup();
+        new Demonasse(this,300,100);
+        new Demonasse(this,200,100);
+        new Demonasse(this,100,100);
+        new Demonasse(this,400,100);
+
 
         this.platforms.create(50 ,200,"ground");
         //this.walls.create(50 ,0,"ground");
@@ -51,16 +58,6 @@ class TableauZoo extends Tableau{
         this.boulasse.setBounce(1);
         this.boulasse.setVelocityX(50);
         this.physics.add.overlap(this.player, this.boulasse, this.hitSpike, null, this);
-
-        //Un démon rapide qui ne peut etre esquivé uniquement en sautant par dessus
-        this.demonasse=this.physics.add.sprite(300,this.sys.canvas.height-70,"demonasse");
-        this.demonasse.setOrigin(0,20);
-        this.demonasse.setDisplaySize(80,80);
-        this.demonasse.setCollideWorldBounds(true);
-        this.demonasse.setBounceX(1);
-        this.demonasse.setGravityY(2000);
-        this.demonasse.setVelocityX(300);
-        this.physics.add.overlap(this.player, this.demonasse, this.hitSpike, null, this);
         
 
         //Vif et rapide, il rebondit pour surprendre le joueur
@@ -100,14 +97,15 @@ class TableauZoo extends Tableau{
         //this.physics.add.collider(this.player, this.walls) (au cas ou je met des murs)
         this.physics.add.collider(this.boulasse, this.platforms)
         //this.physics.add.collider(this.boulasse, this.walls)
-        this.physics.add.collider(this.demonasse, this.platforms)
-        //this.physics.add.collider(this.demonasse, this.walls)
         this.physics.add.collider(this.rosasse, this.platforms)
         //this.physics.add.collider(this.rosasse, this.walls)
         this.physics.add.collider(this.chapotasse, this.platforms)
         //this.physics.add.collider(this.chapotasse, this.walls)
         this.physics.add.collider(this.kingasse, this.platforms)
         //this.physics.add.collider(this.kingasse, this.walls)
+
+        this.physics.add.collider(this, this.platforms)
+        this.physics.add.collider(this, this.walls)
     }
 
 }
