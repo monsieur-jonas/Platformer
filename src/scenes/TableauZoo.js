@@ -18,9 +18,10 @@ class TableauZoo extends Tableau{
         this.platforms = this.physics.add.staticGroup();
         this.walls = this.physics.add.staticGroup();
         new Demonasse(this,300,100);
-        new Demonasse(this,200,100);
-        new Demonasse(this,100,100);
-        new Demonasse(this,400,100);
+        new Kingasse(this,200,100);
+        new Chapotasse(this,100,100);
+        new Rosasse(this,400,100);
+        new Boulasse(this,500,100);
 
 
         this.platforms.create(50 ,200,"ground");
@@ -49,61 +50,10 @@ class TableauZoo extends Tableau{
         this.star1.setCollideWorldBounds(true);
         this.star1.setBounce(0);
 
-        
-        //Lent et imposant, il faut anticiper ses mouvement pour passer en dessous
-        this.boulasse=this.physics.add.sprite(300,this.sys.canvas.height-70,"boulasse");
-        this.boulasse.setOrigin(0,50);
-        this.boulasse.setDisplaySize(64,64);
-        this.boulasse.setCollideWorldBounds(true);
-        this.boulasse.setBounce(1);
-        this.boulasse.setVelocityX(50);
-        this.physics.add.overlap(this.player, this.boulasse, this.hitSpike, null, this);
-        
-
-        //Vif et rapide, il rebondit pour surprendre le joueur
-        this.rosasse=this.physics.add.sprite(300,this.sys.canvas.height-70,"rosasse");
-        this.rosasse.setOrigin(0,0);
-        this.rosasse.setDisplaySize(50,50);
-        this.rosasse.setCollideWorldBounds(true);
-        this.rosasse.setBounce(1);
-        this.rosasse.setGravityY(1000);
-        this.rosasse.setVelocityX(60);
-
-        //imprévisible personne n'a jamais su ce qu'il cachait sous son chapeau...
-        this.chapotasse=this.physics.add.sprite(300,this.sys.canvas.height-70,"chapotasse");
-        this.chapotasse.setOrigin(0,0);
-        this.chapotasse.setDisplaySize(60,60);
-        this.chapotasse.setCollideWorldBounds(true);
-        this.chapotasse.setBounce(1);
-        this.chapotasse.setGravityY(1000);
-        this.chapotasse.setVelocityX(40);
-        
-
-        //Le roi incontésté de ce royaume, objectivement trop flémard pour se déplacer plus vite en plus de peser lourd
-        this.kingasse=this.physics.add.sprite(300,this.sys.canvas.height-70,"kingasse");
-        this.kingasse.setOrigin(0,20);
-        this.kingasse.setDisplaySize(70,70);
-        this.kingasse.setCollideWorldBounds(true);
-        this.kingasse.setBounce(0.3);
-        this.kingasse.setGravityY(5000);
-        this.kingasse.setVelocityX(20);
-
-        this.physics.add.overlap(this.player, this.rosasse, this.hitSpike, null, this);
-
         //quand le joueur touche une étoile on appelle la fonction ramasserEtoile
         this.physics.add.overlap(this.player, this.star1, this.ramasserEtoile, null, this);
 
-        this.physics.add.collider(this.player, this.platforms)
-        //this.physics.add.collider(this.player, this.walls) (au cas ou je met des murs)
-        this.physics.add.collider(this.boulasse, this.platforms)
-        //this.physics.add.collider(this.boulasse, this.walls)
-        this.physics.add.collider(this.rosasse, this.platforms)
-        //this.physics.add.collider(this.rosasse, this.walls)
-        this.physics.add.collider(this.chapotasse, this.platforms)
-        //this.physics.add.collider(this.chapotasse, this.walls)
-        this.physics.add.collider(this.kingasse, this.platforms)
-        //this.physics.add.collider(this.kingasse, this.walls)
-
+        //Foutus problemes de collisions !
         this.physics.add.collider(this, this.platforms)
         this.physics.add.collider(this, this.walls)
     }
