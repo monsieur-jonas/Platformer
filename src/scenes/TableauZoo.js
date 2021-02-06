@@ -19,8 +19,8 @@ class TableauZoo extends Tableau{
         this.walls = this.physics.add.staticGroup();
         new Demonasse(this,300,100);
         new Kingasse(this,200,100);
-        new Chapotasse(this,100,100);
-        new Rosasse(this,400,100);
+        new Chapotasse(this,100,300);
+        new Rosasse(this,400,350);
         new Boulasse(this,500,100);
 
 
