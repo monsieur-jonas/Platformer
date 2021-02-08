@@ -13,7 +13,7 @@ class Kingasse extends ObjetEnnemi{
         this.setOrigin(0,20);
         this.setDisplaySize(70,70);
         this.setCollideWorldBounds(true);
-        this.setBounce(0.3);
+        this.setBounce(0.4);
         this.setGravityY(5000);
         this.setVelocityX(20);
         //scene.physics.add.collider(this, scene.platforms)

@@ -4,11 +4,13 @@ class Tableau08 extends Tableau{
         super.preload();
         this.load.image('star', 'assets/star.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.image('sky-2', 'assets/sky-2.jpg');
-    }
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('sky-2', 'assets/sky-2.png');
+    }   
     create() {
         super.create();
 
+        
         //on définit la taille du tableau
         let largeurDuTableau=4000;
         let hauteurDuTableau=600; //la hauteur est identique au cadre du jeu
@@ -38,21 +40,20 @@ class Tableau08 extends Tableau{
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'sky-2'
+            'sky'
         );
         this.sky.setOrigin(0,0);
         this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
         //on ajoute une deuxième couche de ciel
         this.sky2=this.add.tileSprite(
             0,
-            0,
+            46,
             this.sys.canvas.width,
             this.sys.canvas.height,
             'sky-2'
         );
         this.sky2.setScrollFactor(0);
         this.sky2.setOrigin(0,0);
-        this.sky2.alpha=0.2;
         //this.sky.tileScaleX=this.sky.tileScaleY=0.8;
 
 
@@ -60,6 +61,7 @@ class Tableau08 extends Tableau{
         this.platforms.setDepth(10)
         this.stars.setDepth(10)
         this.player.setDepth(10)
+        this.sky2.alpha = 1;
     }
 
     update(){

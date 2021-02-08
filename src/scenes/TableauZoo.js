@@ -11,17 +11,14 @@ class TableauZoo extends Tableau{
     }
     create() {
         super.create();
-
-        
-        
        
         this.platforms = this.physics.add.staticGroup();
         this.walls = this.physics.add.staticGroup();
-        new Demonasse(this,300,100);
-        new Kingasse(this,200,100);
-        new Chapotasse(this,100,300);
-        new Rosasse(this,400,350);
-        new Boulasse(this,500,100);
+        this.demonasse = new Demonasse(this,300,100);
+        this.kingasse = new Kingasse(this,200,210);
+        this.chapotasse = new Chapotasse(this,100,300);
+        this.rosasse = new Rosasse(this,400,350);
+        this.boulasse = new Boulasse(this,500,100);
 
 
         this.platforms.create(50 ,200,"ground");
@@ -54,7 +51,12 @@ class TableauZoo extends Tableau{
         this.physics.add.overlap(this.player, this.star1, this.ramasserEtoile, null, this);
 
         //Foutus problemes de collisions !
-        this.physics.add.collider(this, this.platforms)
+        this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.demonasse, this.platforms)
+        this.physics.add.collider(this.kingasse, this.platforms)
+        this.physics.add.collider(this.chapotasse, this.platforms)
+        this.physics.add.collider(this.rosasse, this.platforms)
+        this.physics.add.collider(this.boulasse, this.platforms)
         this.physics.add.collider(this, this.walls)
     }
 
