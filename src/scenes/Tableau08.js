@@ -22,7 +22,6 @@ class Tableau08 extends Tableau{
 
         //quelques étoiles et plateformes qui vont avec
         this.stars=this.physics.add.group();
-        this.platforms=this.physics.add.staticGroup();
         
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         this.physics.add.collider(this.player,this.platforms);
@@ -65,7 +64,13 @@ class Tableau08 extends Tableau{
         this.sky.setOrigin(0,0);
         this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
         //fait passer les éléments devant le ciel
-        this.platforms.setDepth(10)
+        
+
+        let platforms = this.physics.add.staticGroup();
+        for(let i=0; i<1000; i+50){platforms.create(0+i,500,'ground');}
+
+
+
         this.stars.setDepth(10)
         this.player.setDepth(10)
         this.sky2.alpha = 1;
