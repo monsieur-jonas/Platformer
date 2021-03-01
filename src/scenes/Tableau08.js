@@ -2,14 +2,19 @@ class Tableau08 extends Tableau{
 
     preload() {
         super.preload();
-        this.load.image('star', 'assets/star.png');
-        this.load.image('ground', 'assets/platform.png');
+        this.load.image('demonasse', 'assets/demonasse.png');
+        this.load.image('chapotasse', 'assets/chapotasse.png');
+        this.load.image('star', 'assets/bonus.png');
+        this.load.image('platform', 'assets/platform.png');
+        this.load.image('ground', 'assets/ground.png');
         this.load.image('bg1', 'assets/bg1.png');
         this.load.image('bg3', 'assets/bg3.png');
         this.load.image('bg2', 'assets/bg2.png');
     }   
     create() {
         super.create();
+
+        
 
         
         //on définit la taille du tableau
@@ -24,7 +29,7 @@ class Tableau08 extends Tableau{
         this.stars=this.physics.add.group();
         
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
-        this.physics.add.collider(this.player,this.platforms);
+        ////this.physics.add.collider(this.player,this.platforms);
 
 
         //on change de ciel, on fait une tileSprite ce qui permet d'avoir une image qui se répète
@@ -64,12 +69,44 @@ class Tableau08 extends Tableau{
         this.sky.setOrigin(0,0);
         this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
         //fait passer les éléments devant le ciel
+
+        this.demonasse = new Demonasse(this,300,100);
+        this.chapotasse = new Chapotasse(this,100,300);
         
 
-        let platforms = this.physics.add.staticGroup();
-        for(let i=0; i<1000; i+50){platforms.create(0+i,500,'ground');}
+        this.platforms = this.physics.add.staticGroup();
 
+        for(let i=0; i<2000; i+=64){
+            this.platforms
+            .create(i,420,'ground');
+        }
 
+        for(let i=0; i<320; i=i+64){
+            this.platforms
+                .create(0+i,250,'platform')
+                .setSize(64,25)
+                .setOffset(0,0);
+        }
+
+        for(let i=0; i<200; i=i+64){
+            this.platforms
+            .create(600+i,300,'platform')
+            .setSize(64,25)
+            .setOffset(0,0);
+        }
+        
+        this.physics.add.collider(this.player, this.platforms);
+        this.physics.add.overlap(this.player, this.demonasse, this.hitSpike, null, this);
+        this.physics.add.overlap(this.player, this.chapotasse, this.hitSpike, null, this);
+        this.physics.add.collider(this.platforms, this.demonasse);
+        this.physics.add.collider(this.platforms, this.chapotasse);
+        
+        this.stars=this.physics.add.group();
+        this.stars.create(100,0,"star").setCollideWorldBounds(true).setBounce(0.4);
+        this.stars.create(500,350,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+
+        this.physics.add.collider(this.platforms, this.stars);
 
         this.stars.setDepth(10)
         this.player.setDepth(10)

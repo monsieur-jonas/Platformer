@@ -15,7 +15,7 @@ class Tableau extends Phaser.Scene{
      * Par défaut on charge un fond et le player
      */
     preload(){
-        this.load.image('sky', 'assets/sky.png');
+        this.load.image('sky', 'assets/bg2.png');
         this.load.image('spike', 'assets/spike.png');
         this.load.spritesheet('player',
             'assets/player.png',
@@ -80,7 +80,7 @@ class Tableau extends Phaser.Scene{
     {
         this.physics.pause();
         player.setTint(0xff0000);
-        player.anims.play('turn');
+        //player.anims.play('turn');
         this.scene.restart();
 
     }
