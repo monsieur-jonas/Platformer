@@ -17,7 +17,7 @@ let config = {
         new Ui(),
 
         new Tableau08("Récuperez toutes les âmes"),
-        new TableauZoo("Un Zoo hihi"),
+        new TableauZoo("Voici le vrai enfer"),
         new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),
