@@ -17,6 +17,13 @@ class Tableau extends Phaser.Scene{
     preload(){
         this.load.image('sky', 'assets/bg2.png');
         this.load.image('spike', 'assets/spike.png');
+        this.load.spritesheet('explode',
+            'assets/explode.png',
+            { frameWidth: 50, frameHeight: 50  }
+        );
+        //this.load.spritesheet('demon',
+            //'asset/demon.png',
+            //{ frameWidth: 488, frameHeight: 604});
         this.load.spritesheet('player',
             'assets/player.png',
             { frameWidth: 32, frameHeight: 48  }
@@ -26,24 +33,55 @@ class Tableau extends Phaser.Scene{
         Tableau.current=this;
         this.sys.scene.scale.lockOrientation("landscape")
         console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
-        /**
-         * Le ciel en fond
-         * @type {Phaser.GameObjects.Image}
-         */
-        this.sky=this.add.image(0, 0, 'sky').setOrigin(0,0);
-        this.sky.displayWidth=14*64;
-        this.sky.setScrollFactor(0,0);
+        
         /**
          * Le joueur
          * @type {Player}
          */
         this.player=new Player(this,0,0);
 
+        this.explode=this.add.sprite(this.sys.canvas.width/50,this.sys.canvas.height/50,"explode")
+        this.explode.displayWidth=50;
+        this.explode.displayHeight=50;
+        this.explode.setDepth(1000);
+        this.explode.visible=true;
+
+        
+        
+
     }
     update(){
         super.update();
         this.player.move();
     }
+
+    saigne(object,onComplete){
+        let me=this;
+        me.explode.visible=false;
+        me.explode.rotation = Phaser.Math.Between(0,6);
+        me.explode.x=object.x;
+        me.explode.y=object.y;
+        me.tweens.add({
+            targets:me.explode,
+            duration:200,
+            displayHeight:{
+                from:50,
+                to:50,
+            },
+            displayWidth:{
+                from:50,
+                to:50,
+            },
+            onComplete: function () {
+                me.explode.visible=false;
+                onComplete();
+            }
+        })
+    }
+        
+
+
+
 
     ramasserEtoile (player, star)
     {
@@ -70,18 +108,43 @@ class Tableau extends Phaser.Scene{
         }
          */
     }
+    hitMonster(player, monster){
+        let me=this;
+        if(monster.isDead !== true){ 
+            if(
+                
+                player.body.velocity.y > 0
+                
+                && player.getBounds().bottom < monster.getBounds().top+30
 
-    /**
-     * Aïeee ça fait mal
-     * @param player
-     * @param spike
-     */
-    hitSpike (player, spike)
-    {
-        this.physics.pause();
-        player.setTint(0xff0000);
-        //player.anims.play('turn');
-        this.scene.restart();
+            ){
+                ui.gagne();
+                monster.isDead=true; 
+                monster.visible=false;
+                this.saigne(monster,function(){
+                    
+                })
+                
+                player.directionY=500;
+            }else{
+                
+                if(!me.player.isDead){
+                    me.player.isDead=true;
+                    me.player.visible=false;
+                    
+                    me.saigne(me.player,function(){
+                        
+                        me.explode.visible=false;
+                        me.player.anims.play('turn');
+                        me.player.isDead=false;
+                        me.scene.restart();
+                    })
+
+                }
+
+
+            }
+        }
 
     }
 

@@ -20,4 +20,5 @@ class Demonasse extends ObjetEnnemi{
         //scene.physics.add.collider(this, scene.platforms)
         //scene.physics.add.collider(this, scene.walls)
         }
+        
     }
