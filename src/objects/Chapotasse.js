@@ -20,5 +20,18 @@ class Chapotasse extends ObjetEnnemi{
         //scene.physics.add.collider(this, scene.platforms)
         //scene.physics.add.collider(this, scene.walls)
         }
-        
+        update(){
+          
+            if(this.body){
+                if(this.body.velocity.x<0){
+                    this.flipX=false;
+                }else{
+                    this.flipX=true;
+                }
+            }
+    
+        }
+    
+    
+    
     }

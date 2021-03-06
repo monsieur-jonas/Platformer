@@ -5,6 +5,7 @@ class Tableau08 extends Tableau{
         this.load.image('demonasse', 'assets/demonasse.png');
         this.load.image('chapotasse', 'assets/chapotasse.png');
         this.load.image('star', 'assets/bonus.png');
+        this.load.image('coureur', 'assets/coureur.png');
         //this.load.image('demon', 'assets/demon.png');
         this.load.image('platform', 'assets/platform.png');
         this.load.image('ground', 'assets/ground.png');
@@ -64,11 +65,12 @@ class Tableau08 extends Tableau{
         this.sky.setOrigin(0,0);
         this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
         //this.demon = new demon(this,300,300);
-        this.demonasse = new Demonasse(this,300,300);
-        this.demonasse = new Demonasse(this,1000,300);
-        this.chapotasse = new Chapotasse(this,100,300);
-        this.chapotasse = new Chapotasse(this,600,300);
-        this.chapotasse = new Chapotasse(this,1000,300);
+        this.demonasse1 = new Demonasse(this,300,300);
+        this.demonasse2 = new Demonasse(this,1000,300);
+        this.chapotasse1 = new Chapotasse(this,100,300);
+        this.chapotasse2 = new Chapotasse(this,600,300);
+        this.chapotasse3 = new Chapotasse(this,1000,300);
+    
         
         
         
@@ -122,8 +124,13 @@ class Tableau08 extends Tableau{
         this.physics.add.collider(this.player, this.platforms);
         this.physics.add.overlap(this.player, this.demonasse, this.hitMonster, null, this);
         this.physics.add.overlap(this.player, this.chapotasse, this.hitMonster, null, this);
-        this.physics.add.collider(this.platforms, this.demonasse);
-        this.physics.add.collider(this.platforms, this.chapotasse);
+        this.physics.add.collider(this.platforms, this.demonasse1);
+        this.physics.add.collider(this.platforms, this.demonasse2);
+        this.physics.add.collider(this.platforms, this.chapotasse1);
+        this.physics.add.collider(this.platforms, this.chapotasse2);
+        this.physics.add.collider(this.platforms, this.chapotasse3);
+        this.physics.add.collider(this.platforms, this.chapotasse4);
+       
         
         
         this.stars=this.physics.add.group();
@@ -158,13 +165,8 @@ class Tableau08 extends Tableau{
         this.sky2.tilePositionX=this.cameras.main.scrollX*0.3+500;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.1+30;
 
-        if(this.body){
-            if(this.body.velocity.x<0){
-                this.flipX=false;
-            }else{
-                this.flipX=true;
-            }
-        }
+        
+        
 
     }
 

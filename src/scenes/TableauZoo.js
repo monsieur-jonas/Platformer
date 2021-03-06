@@ -2,7 +2,7 @@ class TableauZoo extends Tableau{
 
     preload() {
         super.preload();
-        this.load.image('star', 'assets/star.png');
+        this.load.image('star', 'assets/bonus.png');
         this.load.image('boulasse', 'assets/boulasse.png');
         this.load.image('demonasse', 'assets/demonasse.png');
         this.load.image('rosasse', 'assets/rosasse.png');

@@ -16,7 +16,6 @@ class Kingasse extends ObjetEnnemi{
         this.setBounce(0.4);
         this.setGravityY(5000);
         this.setVelocityX(20);
-        //scene.physics.add.collider(this, scene.platforms)
-        //scene.physics.add.collider(this, scene.walls)
+    
         }
     }
