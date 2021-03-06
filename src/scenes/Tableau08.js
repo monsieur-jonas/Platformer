@@ -63,11 +63,15 @@ class Tableau08 extends Tableau{
         );
         this.sky.setOrigin(0,0);
         this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        //fait passer les éléments devant le ciel
         //this.demon = new demon(this,300,300);
-        this.demonasse = new Demonasse(this,300,100);
+        this.demonasse = new Demonasse(this,300,300);
+        this.demonasse = new Demonasse(this,1000,300);
         this.chapotasse = new Chapotasse(this,100,300);
-        //this.demon=new Demon(this,400,200);
+        this.chapotasse = new Chapotasse(this,600,300);
+        this.chapotasse = new Chapotasse(this,1000,300);
+        
+        
+        
         
 
         this.platforms = this.physics.add.staticGroup();
@@ -77,7 +81,24 @@ class Tableau08 extends Tableau{
             .create(i,420,'ground');
         }
 
+        for(let i=384; i<448; i+=64){
+            this.platforms
+            .create(i,356,'ground');
+        }
+
+        for(let i=1280; i<1600; i+=64){
+            this.platforms
+            .create(i,356,'ground');
+        }
+
         for(let i=0; i<320; i=i+64){
+            this.platforms
+                .create(0+i,250,'platform')
+                .setSize(64,25)
+                .setOffset(0,0);
+        }
+
+        for(let i=1000; i<1200; i=i+64){
             this.platforms
                 .create(0+i,250,'platform')
                 .setSize(64,25)
@@ -90,6 +111,13 @@ class Tableau08 extends Tableau{
             .setSize(64,25)
             .setOffset(0,0);
         }
+
+        for(let i=0; i<200; i=i+64){
+            this.platforms
+            .create(1700+i,300,'platform')
+            .setSize(64,25)
+            .setOffset(0,0);
+        }
         
         this.physics.add.collider(this.player, this.platforms);
         this.physics.add.overlap(this.player, this.demonasse, this.hitMonster, null, this);
@@ -97,9 +125,17 @@ class Tableau08 extends Tableau{
         this.physics.add.collider(this.platforms, this.demonasse);
         this.physics.add.collider(this.platforms, this.chapotasse);
         
+        
         this.stars=this.physics.add.group();
-        this.stars.create(100,0,"star").setCollideWorldBounds(true).setBounce(0.4);
+        this.stars.create(100,320,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(400,250,"star").setCollideWorldBounds(true).body.allowGravity=false;
         this.stars.create(500,350,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(700,180,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(1050,150,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(1250,260,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(1400,260,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(1550,260,"star").setCollideWorldBounds(true).body.allowGravity=false;
+        this.stars.create(1850,180,"star").setCollideWorldBounds(true).body.allowGravity=false;
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
         this.physics.add.collider(this.platforms, this.stars);
@@ -121,6 +157,14 @@ class Tableau08 extends Tableau{
         //le deuxième ciel se déplace moins vite pour accentuer l'effet
         this.sky2.tilePositionX=this.cameras.main.scrollX*0.3+500;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.1+30;
+
+        if(this.body){
+            if(this.body.velocity.x<0){
+                this.flipX=false;
+            }else{
+                this.flipX=true;
+            }
+        }
 
     }
 

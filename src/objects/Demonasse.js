@@ -15,10 +15,19 @@ class Demonasse extends ObjetEnnemi{
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
         this.setGravityY(2000);
-        this.setVelocityX(300);
+        this.setVelocityX(200);
 
         //scene.physics.add.collider(this, scene.platforms)
         //scene.physics.add.collider(this, scene.walls)
         }
+        update(){
+            if (this.body.setVelocity.X > 0){
+                this.setflip(true, false);
+            }
+            else {
+                this.setflip(false, false);
+            }
+            }
+            
         
     }
