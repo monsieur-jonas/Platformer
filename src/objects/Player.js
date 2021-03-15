@@ -6,29 +6,33 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         this.setCollideWorldBounds(true)
         this.setBounce(0.3);
-        this.setGravityY(700)
+        this.setGravityY(300)
         this.setFriction(1,1);
+        this.scale = 0.9;
 
         this.setBodySize(this.body.width-6,this.body.height-10);
         this.setOffset(3, 10);
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('player', { start: 14, end: 16 }),
+            frameRate: 7,
             repeat: -1
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
+            frameRate: 7,
             repeat: -1
         });
         this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'player', frame: 4 } ],
-            frameRate: 20
+            key: 'stand',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 10 }),
+            frameRate: 7,
+            repeat: -1
+            // frames: [ { key: 'player', frame: 1 } ],
+            // frameRate: 20
         });
 
         this._directionX=0;
@@ -70,15 +74,19 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 this.anims.play('right', true);
                 break;
             default:
+                
                 this.setVelocityX(0);
-                this.anims.play('turn');
+                break;
         }
 
         if(this._directionY<0){
             if(this.body.blocked.down || this.body.touching.down){
-                this.setVelocityY(-550);
+                this.setVelocityY(-370);
             }
         }
+
+        if(this.body.velocity.x == 0){
+                this.anims.play('stand')}
 
 
     }

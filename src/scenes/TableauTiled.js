@@ -44,11 +44,11 @@ class TableauTiled extends Tableau{
 
         //---- ajoute les plateformes simples ----------------------------
 
-        this.devant = this.map.createLayer('Map', this.tileset, 0, 0);
+        this.devant = this.map.createLayer('sol', this.tileset, 0, 0);
 
         //on définit les collisions, plusieurs méthodes existent:
 
-        this.devant.setCollisionByProperty({ collides: true });
+        //this.devant.setCollisionByProperty({ collides: true });
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
         this.devant.setCollisionByExclusion(-1, true);
