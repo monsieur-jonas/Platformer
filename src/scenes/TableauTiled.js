@@ -14,12 +14,11 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tiled/tableauTiledTileset.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/test.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/oscour.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/kingasse.png');
         this.load.image('night', 'assets/superfond.jpg');
-        //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
     }
     create() {
@@ -46,16 +45,13 @@ class TableauTiled extends Tableau{
 
         this.devant = this.map.createLayer('sol', this.tileset, 0, 0);
 
-        //on définit les collisions, plusieurs méthodes existent:
+        //on définit les collisions
 
-        //this.devant.setCollisionByProperty({ collides: true });
-
-        // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
-        this.devant.setCollisionByExclusion(-1, true);
+        this.devant.setCollisionByProperty({ collide: true });
+        //this.lave.setCollisionByProperty({ collide: true });        
 
         //----------les étoiles (objets) ---------------------
 
-        // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
         this.stars = this.physics.add.group({
             allowGravity: true,
             immovable: false,

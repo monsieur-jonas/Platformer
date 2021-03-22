@@ -5,8 +5,6 @@ class Tableau08 extends Tableau{
         this.load.image('demonasse', 'assets/demonasse.png');
         this.load.image('chapotasse', 'assets/chapotasse.png');
         this.load.image('star', 'assets/soul.png');
-        this.load.image('coureur', 'assets/coureur.png');
-        //this.load.image('demon', 'assets/demon.png');
         this.load.image('platform', 'assets/platform.png');
         this.load.image('ground', 'assets/ground.png');
         this.load.image('bg1', 'assets/bg1.png');
