@@ -75,6 +75,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 break;
             default:
                 
+                this.anims.play('stand', true);
                 this.setVelocityX(0);
                 break;
         }
@@ -85,8 +86,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             }
         }
 
-        if(this.body.velocity.x == 0){
-                this.anims.play('stand')}
+        // if(this.body.velocity.x == 0){
+        //         this.anims.play('stand')}
 
 
     }

@@ -18,6 +18,7 @@ class Demonasse extends ObjetEnnemi{
         this.setVelocityX(200);
 
         
+
         }
        
         update(){

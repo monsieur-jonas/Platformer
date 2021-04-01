@@ -40,12 +40,13 @@ class Tableau extends Phaser.Scene{
          */
         this.player=new Player(this,0,100);
 
-        this.explode=this.add.sprite(this.sys.canvas.width/50,this.sys.canvas.height/50,"explode")
-        this.explode.displayWidth=50;
-        this.explode.displayHeight=50;
-        this.explode.setDepth(1000);
-        this.explode.visible=true;
-
+        
+        this.anims.create({
+            key: 'explode',
+            frames: this.anims.generateFrameNumbers('explode', { start: 0, end: 5 }),
+            frameRate: 7,
+            repeat: -1
+        });
         
         
 
@@ -55,28 +56,28 @@ class Tableau extends Phaser.Scene{
         this.player.move();
     }
 
-    saigne(object,onComplete){
+    explode(object,onComplete){
         let me=this;
-        me.explode.visible=false;
-        me.explode.rotation = Phaser.Math.Between(0,6);
-        me.explode.x=object.x;
-        me.explode.y=object.y;
-        me.tweens.add({
-            targets:me.explode,
-            duration:200,
-            displayHeight:{
-                from:50,
-                to:50,
-            },
-            displayWidth:{
-                from:50,
-                to:50,
-            },
-            onComplete: function () {
-                me.explode.visible=false;
-                onComplete();
-            }
-        })
+        me.explode.visible=true;
+        // me.explode.rotation = Phaser.Math.Between(0,6);
+        // me.explode.x=object.x;
+        // me.explode.y=object.y;
+        // me.tweens.add({
+        //     targets:me.explode,
+        //     duration:200,
+        //     displayHeight:{
+        //         from:50,
+        //         to:50,
+        //     },
+        //     displayWidth:{
+        //         from:50,
+        //         to:50,
+        //     },
+        //     onComplete: function () {
+        //         me.explode.visible=false;
+        //         onComplete();
+        //     }
+        // })
     }
         
 
@@ -121,7 +122,7 @@ class Tableau extends Phaser.Scene{
                 ui.gagne();
                 monster.isDead=true; 
                 monster.visible=false;
-                this.saigne(monster,function(){
+                this.explode(monster,function(){
                     
                 })
                 

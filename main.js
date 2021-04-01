@@ -10,15 +10,15 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: false,
+            debug: true,
         }
     },
     scene: [
         new Ui(),
 
-        
-        new TableauTiled("oscour"),
         new Tableau08("Récuperez toutes les âmes"),
+        new TableauTiled("oscour"),
+        
         new TableauZoo("Voici le vrai enfer"),
         new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
