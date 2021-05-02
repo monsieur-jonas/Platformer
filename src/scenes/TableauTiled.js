@@ -12,12 +12,12 @@ class TableauTiled extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
-        this.load.image('tiles', 'assets/tiled/tableauTiledTileset.png');
+        this.load.image('tiles', 'assets/tiled/tilesetmkboratory.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/oscour.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/Mkmap.json');
 
         // -----et puis aussi-------------
-        this.load.image('monster-fly', 'assets/kingasse.png');
+        
         this.load.image('night', 'assets/superfond.jpg');
         //on y trouve notre étoiles et une tête de mort
     }
@@ -32,18 +32,18 @@ class TableauTiled extends Tableau{
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('tableauTiledTileset', 'tiles');
+        this.tileset = this.map.addTilesetImage('tilesetmkboratory', 'tiles');
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
-        this.cameras.main.startFollow(this.player, true, 1, 1);
+        this.cameras.main.startFollow(this.player, true, 1, 1.2);
 
         //---- ajoute les plateformes simples ----------------------------
 
-        this.devant = this.map.createLayer('sol', this.tileset, 0, 0);
+        this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
 
         //on définit les collisions
 
