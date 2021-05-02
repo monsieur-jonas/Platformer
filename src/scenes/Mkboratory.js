@@ -1,4 +1,4 @@
-class TableauTiled extends Tableau{
+class Mkboratory extends Tableau{
     /**
      * Ce tableau démontre comment se servir de Tiled, un petit logiciel qui permet de designer des levels et de les importer dans Phaser (entre autre).
      *
@@ -14,7 +14,7 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tiled/tilesetmkboratory.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/Mkmap.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/newmk.json');
 
         // -----et puis aussi-------------
         
@@ -44,10 +44,12 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
+        this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
 
         //on définit les collisions
-
+        
         this.devant.setCollisionByProperty({ collide: true });
+        this.devant.setCollisionByExclusion(-1, true);
         //this.lave.setCollisionByProperty({ collide: true });        
 
         //----------les étoiles (objets) ---------------------
@@ -128,11 +130,12 @@ class TableauTiled extends Tableau{
         this.stars.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);
+        
         //this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
-        //this.derriere.setDepth(z--);
+        this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
 
