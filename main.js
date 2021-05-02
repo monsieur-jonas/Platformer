@@ -16,8 +16,8 @@ let config = {
     scene: [
         new Ui(),
 
-        new Tableau08("Récuperez toutes les âmes"),
         new TableauTiled("oscour"),
+        new Tableau08("Récuperez toutes les âmes"),
         
         new TableauZoo("Voici le vrai enfer"),
         new Tableau00("Des étoiles"),
