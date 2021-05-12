@@ -12,9 +12,9 @@ class Mkboratory extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
-        this.load.image('tiles', 'assets/tiled/tilesetmkboratory.png');
+        this.load.image('tiles', 'assets/tiled/tilesetexperiences.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/newmk.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap.json');
 
         // -----et puis aussi-------------
         
@@ -32,7 +32,7 @@ class Mkboratory extends Tableau{
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('tilesetmkboratory', 'tiles');
+        this.tileset = this.map.addTilesetImage('tilesetexperiences', 'tiles');
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
