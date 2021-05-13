@@ -15,18 +15,20 @@ class Tableau extends Phaser.Scene{
      * Par défaut on charge un fond et le player
      */
     preload(){
-        this.load.image('sky', 'assets/bg2.png');
+        this.load.image('boom', 'assets/blood.jpg');
         this.load.image('spike', 'assets/spike.png');
-        this.load.spritesheet('explode',
-            'assets/explode.png',
+        this.load.image('bullet', 'assets/bullet01.png');
+        this.load.image('night', 'assets/superfond.jpg');
+        this.load.image('kevin', 'assets/kevin02.png');
+        this.load.spritesheet('explode','assets/explode.png',
             { frameWidth: 50, frameHeight: 50  }
         );
         //this.load.spritesheet('demon',
             //'asset/demon.png',
             //{ frameWidth: 488, frameHeight: 604});
         this.load.spritesheet('player',
-            'assets/player.png',
-            { frameWidth: 57, frameHeight: 70  }
+            'assets/mike01.png',
+            { frameWidth: 60, frameHeight: 125  }
         );
     }
     create(){
@@ -40,6 +42,12 @@ class Tableau extends Phaser.Scene{
          */
         this.player=new Player(this,0,100);
 
+        this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
+        this.boom.displayWidth=64;
+        this.boom.displayHeight=64;
+        this.boom.visible=false;
+        this.boom.setDepth(50)
+
         
         this.anims.create({
             key: 'explode',
@@ -47,7 +55,9 @@ class Tableau extends Phaser.Scene{
             frameRate: 7,
             repeat: -1
         });
-        
+        this.input.on('pointerdown', function () {
+            this.cameras.main.shake(10);
+        }, this);
         
 
     }
@@ -108,6 +118,30 @@ class Tableau extends Phaser.Scene{
            this.win();
         }
          */
+        
+    }
+    saigne(object,onComplete){
+        let me=this;
+        me.boom.visible=true;
+        me.boom.rotation = Phaser.Math.Between(0,6);
+        me.boom.x=object.x;
+        me.boom.y=object.y;
+        me.tweens.add({
+            targets:me.boom,
+            duration:200,
+            displayHeight:{
+                from:40,
+                to:70,
+            },
+            displayWidth:{
+                from:40,
+                to:70,
+            },
+            onComplete: function () {
+                me.boom.visible=false;
+                onComplete();
+            }
+        })
     }
     hitMonster(player, monster){
         let me=this;

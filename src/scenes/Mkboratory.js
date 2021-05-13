@@ -14,15 +14,17 @@ class Mkboratory extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tiled/tilesetexperiences.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap03.json');
 
         // -----et puis aussi-------------
         
-        this.load.image('night', 'assets/superfond.jpg');
+        
+        
         //on y trouve notre étoiles et une tête de mort
     }
     create() {
         super.create();
+
 
         //on en aura besoin...
         let ici=this;
@@ -59,25 +61,15 @@ class Mkboratory extends Tableau{
             immovable: false,
             bounceY:1
         });
-        //this.starsObjects = this.map.getObjectLayer('stars')['objects'];
-        // On crée des étoiles pour chaque objet rencontré
-        // this.starsObjects.forEach(starObject => {
-        //     // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
-        //     let star = this.stars.create(starObject.x+32, starObject.y-64, 'star');
-        // });
-
-
-        //----------les monstres volants (objets tiled) ---------------------
-
+        //--------------monstres-------------------
         let monstersContainer=this.add.container();
-        // this.flyingMonstersObjects = this.map.getObjectLayer('flyingMonsters')['objects'];
-        // // On crée des montres volants pour chaque objet rencontré
-        // this.flyingMonstersObjects.forEach(monsterObject => {
-        //     let monster=new MonsterFly(this,monsterObject.x,monsterObject.y);
-        //     monstersContainer.add(monster);
-        // });
-
-
+        ici.kevin = ici.map.getObjectLayer('kevin')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        ici.kevin.forEach(monsterObject => {
+            let monster=new Kevin(this,monsterObject.x,monsterObject.y);
+            monstersContainer.add(monster);
+            this.physics.add.collider (monster,this.devant)
+        });
         //----------débug---------------------
         
         //pour débugger les collisions sur chaque layer
@@ -126,15 +118,18 @@ class Mkboratory extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
         //this.boom.setDepth(z--);
-        monstersContainer.setDepth(z--);
+       
         this.stars.setDepth(z--);
+        monstersContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);
+        
         
         //this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
+       
         this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);

@@ -8,32 +8,32 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setBounce(0.3);
         this.setGravityY(300)
         this.setFriction(1,1);
-        this.scale = 0.9;
+        this.scale = 0.8;
 
         this.setBodySize(this.body.width-6,this.body.height-10);
         this.setOffset(3, 10);
 
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('player', { start: 14, end: 16 }),
-            frameRate: 7,
-            repeat: -1
-        });
+        // this.anims.create({
+        //     key: 'left',
+        //     frames: this.anims.generateFrameNumbers('player', { start: 14, end: 16 }),
+        //     frameRate: 7,
+        //     repeat: -1
+        // });
 
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
-            frameRate: 7,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'stand',
-            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 10 }),
-            frameRate: 7,
-            repeat: -1
-            // frames: [ { key: 'player', frame: 1 } ],
-            // frameRate: 20
-        });
+        // this.anims.create({
+        //     key: 'right',
+        //     frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
+        //     frameRate: 7,
+        //     repeat: -1
+        // });
+        // this.anims.create({
+        //     key: 'stand',
+        //     frames: this.anims.generateFrameNumbers('player', { start: 0, end: 10 }),
+        //     frameRate: 7,
+        //     repeat: -1
+        //     // frames: [ { key: 'player', frame: 1 } ],
+        //     // frameRate: 20
+        // });
 
         this._directionX=0;
         this._directionY=0;
