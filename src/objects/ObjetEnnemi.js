@@ -16,4 +16,10 @@ class ObjetEnnemi extends ObjetPhysique{
             scene
         );
     }
+    Tmortlol(){
+        this.disableBody(true, true);
+        // this.sound.play('mobDeath');
+        // this.saigne(monster,function(){
+        // })
+    }
 }

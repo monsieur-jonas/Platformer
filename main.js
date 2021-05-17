@@ -15,7 +15,7 @@ let config = {
     },
     scene: [
         new Ui(),
-
+        new Welcome("cliquez"),
         new Mkboratory("avancez"),
 
         

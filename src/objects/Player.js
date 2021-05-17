@@ -5,9 +5,10 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this)
 
         this.setCollideWorldBounds(true)
-        this.setBounce(0.3);
-        this.setGravityY(300)
-        this.setFriction(1,1);
+        
+        this.setBounce(0);
+        this.setGravityY(400)
+        this.setFriction(1);
         this.scale = 0.8;
 
         this.setBodySize(this.body.width-6,this.body.height-10);
@@ -26,14 +27,14 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         //     frameRate: 7,
         //     repeat: -1
         // });
-        // this.anims.create({
-        //     key: 'stand',
-        //     frames: this.anims.generateFrameNumbers('player', { start: 0, end: 10 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        //     // frames: [ { key: 'player', frame: 1 } ],
-        //     // frameRate: 20
-        // });
+        this.anims.create({
+            key: 'stand',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 16 }),
+            frameRate: 7,
+            repeat: -1
+            // frames: [ { key: 'player', frame: 1 } ],
+            // frameRate: 20
+        });
 
         this._directionX=0;
         this._directionY=0;
@@ -67,11 +68,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             case this._directionX<0:
                 this.setVelocityX(-160);
                 this.anims.play('left', true);
+                this.flipX =true;
                 break;
             case this._directionX>0:
 
                 this.setVelocityX(160);
                 this.anims.play('right', true);
+                this.flipX =false;
                 break;
             default:
                 
@@ -90,6 +93,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         //         this.anims.play('stand')}
 
 
+    }
+    shootBeam()
+    {
+        var bullet = new Tir(this.scene,this.x, this.y);
+        console.log("Tir");
     }
 
 

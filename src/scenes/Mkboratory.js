@@ -8,6 +8,10 @@ class Mkboratory extends Tableau{
      * Je vous conseille aussi ce tuto qui propose quelques alternatives (la manière dont son découpées certaines maisons notamment) :
      * https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
      */
+     constructor()
+    {
+        super("labo");
+    }
     preload() {
         super.preload();
         // ------pour TILED-------------
@@ -17,18 +21,36 @@ class Mkboratory extends Tableau{
         this.load.tilemapTiledJSON('map', 'assets/tiled/exmap03.json');
 
         // -----et puis aussi-------------
+        //this.load.audio('welcome', 'assets/Sound/intro.wav');
+        this.load.audio('ingame', 'assets/Sound/ingame.wav');
+        this.load.image('tir', 'assets/bullet01.png');
         
-        
+
         
         //on y trouve notre étoiles et une tête de mort
     }
     create() {
         super.create();
 
+        this.musicAmb = this.sound.add('ingame');
 
+        var musicConfig = 
+        {
+            mute: false,
+            volume: 0.5,
+            rate : 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay:0,
+        }
+        this.musicAmb.play(musicConfig);
         //on en aura besoin...
         let ici=this;
 
+        this.passageMusic = false;
+        this.passage = true
+        this.passageCamera = false;
         //--------chargement de la tile map & configuration de la scène-----------------------
 
         //notre map
@@ -62,12 +84,12 @@ class Mkboratory extends Tableau{
             bounceY:1
         });
         //--------------monstres-------------------
-        let monstersContainer=this.add.container();
+        this.monstersContainer=this.add.container();
         ici.kevin = ici.map.getObjectLayer('kevin')['objects'];
         // On crée des montres pour chaque objet rencontré
         ici.kevin.forEach(monsterObject => {
             let monster=new Kevin(this,monsterObject.x,monsterObject.y);
-            monstersContainer.add(monster);
+            this.monstersContainer.add(monster);
             this.physics.add.collider (monster,this.devant)
         });
         //----------débug---------------------
@@ -120,7 +142,7 @@ class Mkboratory extends Tableau{
         //this.boom.setDepth(z--);
        
         this.stars.setDepth(z--);
-        monstersContainer.setDepth(z--);
+        this.monstersContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);
         

@@ -15,7 +15,6 @@ class Bryan extends ObjetEnnemi{
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
         //this.setBodySize(this.body.width,this.body.height);
-        this.setVelocityX(-40*(Math.random()+1.5));
         this.move = true;
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 

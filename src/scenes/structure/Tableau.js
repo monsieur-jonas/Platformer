@@ -19,15 +19,14 @@ class Tableau extends Phaser.Scene{
         this.load.image('spike', 'assets/spike.png');
         this.load.image('bullet', 'assets/bullet01.png');
         this.load.image('night', 'assets/superfond.jpg');
+        this.load.audio('tir', 'assets/sound/shoot.wav');
         this.load.image('kevin', 'assets/kevin02.png');
         this.load.spritesheet('explode','assets/explode.png',
             { frameWidth: 50, frameHeight: 50  }
         );
-        //this.load.spritesheet('demon',
-            //'asset/demon.png',
-            //{ frameWidth: 488, frameHeight: 604});
+        
         this.load.spritesheet('player',
-            'assets/mike01.png',
+            'assets/mikelegentil.png',
             { frameWidth: 60, frameHeight: 125  }
         );
     }
@@ -35,18 +34,22 @@ class Tableau extends Phaser.Scene{
         Tableau.current=this;
         this.sys.scene.scale.lockOrientation("landscape")
         console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
+        this.sonTir = this.sound.add('tir');
         
         /**
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,100);
+        this.player=new Player(this,0,300);
 
         this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
         this.boom.displayWidth=64;
         this.boom.displayHeight=64;
         this.boom.visible=false;
         this.boom.setDepth(50)
+
+        this.boutonTir = this.input.keyboard.addKey('A');
+
 
         
         this.anims.create({
@@ -64,6 +67,13 @@ class Tableau extends Phaser.Scene{
     update(){
         super.update();
         this.player.move();
+        this.tirPlayer();
+    }
+    tirPlayer(){
+        if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
+            this.player.shootBeam();
+            this.sonTir.play();
+        }
     }
 
     explode(object,onComplete){
