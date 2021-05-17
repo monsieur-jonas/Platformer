@@ -18,7 +18,7 @@ class Mkboratory extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tiled/tilesetexperiences.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap03.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap04.json');
 
         // -----et puis aussi-------------
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
