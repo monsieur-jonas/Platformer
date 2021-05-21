@@ -5,14 +5,14 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this)
 
         this.setCollideWorldBounds(true)
-        
+
         this.setBounce(0);
-        this.setGravityY(400)
+        this.setGravityY(700)
         this.setFriction(1);
-        this.scale = 0.8;
+        this.scale = 1;
 
         this.setBodySize(this.body.width-6,this.body.height-10);
-        this.setOffset(3, 10);
+        this.setOffset(0, 10);
 
         // this.anims.create({
         //     key: 'left',
@@ -77,7 +77,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 this.flipX =false;
                 break;
             default:
-                
+
                 this.anims.play('stand', true);
                 this.setVelocityX(0);
                 break;

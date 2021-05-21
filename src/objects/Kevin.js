@@ -5,13 +5,13 @@ class Kevin extends ObjetEnnemi{
      * @param x
      * @param y
      */
-    constructor(scene, x, y) {                                                              
-        super(scene, x, y,"kevin");                                                       
+    constructor(scene, x, y) {
+        super(scene, x, y,"kevin");
         //pas de gravité
         this.body.allowGravity=true;
-        
+
         //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
-        this.scale = 0.75;
+        this.scale = 1;
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
         //this.setBodySize(this.body.width,this.body.height);
@@ -53,10 +53,10 @@ class Kevin extends ObjetEnnemi{
             }
         }
 
-       
+
     }
 
-    
+
     stop()
     {
         this.setVelocityX(0);

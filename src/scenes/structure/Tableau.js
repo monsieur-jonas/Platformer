@@ -24,7 +24,7 @@ class Tableau extends Phaser.Scene{
         this.load.spritesheet('explode','assets/explode.png',
             { frameWidth: 50, frameHeight: 50  }
         );
-        
+
         this.load.spritesheet('player',
             'assets/mikelegentil.png',
             { frameWidth: 60, frameHeight: 125  }
@@ -35,12 +35,12 @@ class Tableau extends Phaser.Scene{
         this.sys.scene.scale.lockOrientation("landscape")
         console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
         this.sonTir = this.sound.add('tir');
-        
+
         /**
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,300);
+        this.player=new Player(this,0,1500);
 
         this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
         this.boom.displayWidth=64;
@@ -51,7 +51,7 @@ class Tableau extends Phaser.Scene{
         this.boutonTir = this.input.keyboard.addKey('A');
 
 
-        
+
         this.anims.create({
             key: 'explode',
             frames: this.anims.generateFrameNumbers('explode', { start: 0, end: 5 }),
@@ -61,7 +61,7 @@ class Tableau extends Phaser.Scene{
         this.input.on('pointerdown', function () {
             this.cameras.main.shake(10);
         }, this);
-        
+
 
     }
     update(){
@@ -99,7 +99,7 @@ class Tableau extends Phaser.Scene{
         //     }
         // })
     }
-        
+
 
 
 
@@ -128,7 +128,7 @@ class Tableau extends Phaser.Scene{
            this.win();
         }
          */
-        
+
     }
     saigne(object,onComplete){
         let me=this;
@@ -155,30 +155,30 @@ class Tableau extends Phaser.Scene{
     }
     hitMonster(player, monster){
         let me=this;
-        if(monster.isDead !== true){ 
+        if(monster.isDead !== true){
             if(
-                
+
                 player.body.velocity.y > 0
-                
+
                 && player.getBounds().bottom < monster.getBounds().top+30
 
             ){
                 ui.gagne();
-                monster.isDead=true; 
+                monster.isDead=true;
                 monster.visible=false;
                 this.explode(monster,function(){
-                    
+
                 })
-                
+
                 player.directionY=500;
             }else{
-                
+
                 if(!me.player.isDead){
                     me.player.isDead=true;
                     me.player.visible=false;
-                    
+
                     me.saigne(me.player,function(){
-                        
+
                         me.explode.visible=false;
                         me.player.anims.play('turn');
                         me.player.isDead=false;

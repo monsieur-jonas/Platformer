@@ -16,17 +16,17 @@ class Mkboratory extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
-        this.load.image('tiles', 'assets/tiled/tilesetexperiences.png');
+        this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap04.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap08.json');
 
         // -----et puis aussi-------------
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
         this.load.image('tir', 'assets/bullet01.png');
-        
 
-        
+
+
         //on y trouve notre étoiles et une tête de mort
     }
     create() {
@@ -34,7 +34,7 @@ class Mkboratory extends Tableau{
 
         this.musicAmb = this.sound.add('ingame');
 
-        var musicConfig = 
+        var musicConfig =
         {
             mute: false,
             volume: 0.5,
@@ -56,7 +56,7 @@ class Mkboratory extends Tableau{
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('tilesetexperiences', 'tiles');
+        this.tileset = this.map.addTilesetImage('tilesetexperiences_01', 'tiles');
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
@@ -71,10 +71,10 @@ class Mkboratory extends Tableau{
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
 
         //on définit les collisions
-        
+
         this.devant.setCollisionByProperty({ collide: true });
         this.devant.setCollisionByExclusion(-1, true);
-        //this.lave.setCollisionByProperty({ collide: true });        
+        //this.lave.setCollisionByProperty({ collide: true });
 
         //----------les étoiles (objets) ---------------------
 
@@ -93,7 +93,7 @@ class Mkboratory extends Tableau{
             this.physics.add.collider (monster,this.devant)
         });
         //----------débug---------------------
-        
+
         //pour débugger les collisions sur chaque layer
         let debug=this.add.graphics().setAlpha(this.game.config.physics.arcade.debug?0.75:0);
         if(this.game.config.physics.arcade.debug === false){
@@ -140,18 +140,18 @@ class Mkboratory extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
         //this.boom.setDepth(z--);
-       
+
         this.stars.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);
-        
-        
+
+
         //this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
-       
+
         this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
