@@ -7,7 +7,7 @@ class Welcome extends Phaser.Scene {
     {
         // images
         this.load.image('startBG', 'assets/startbg.png');
-        this.load.image('startB', 'assets/startbutton.jpg');
+        //this.load.image('startB', 'assets/startbutton.jpg');
         this.load.image('logo', 'assets/logo.png');
         //this.load.spritesheet('cp', 'assets/cp.png', { frameWidth: 206, frameHeight: 184 } );
 
@@ -64,9 +64,9 @@ class Welcome extends Phaser.Scene {
 
         //---------- on affiche les boutons ----------
 
-        let startB1 = this.add.sprite(game.config.width/2-8, game.config.height -150, 'startB');
-        let startB2 = this.add.sprite(game.config.width/2-8, game.config.height -50, 'startB');
-        let startB3 = this.add.sprite(game.config.width/2-8, game.config.height -250, 'startB');
+        // let startB1 = this.add.sprite(game.config.width/2-8, game.config.height -150, 'startB');
+        // let startB2 = this.add.sprite(game.config.width/2-8, game.config.height -50, 'startB');
+        // let startB3 = this.add.sprite(game.config.width/2-8, game.config.height -250, 'startB');
         //startB.scale = 0.5;
 
 
