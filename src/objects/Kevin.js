@@ -25,33 +25,22 @@ class Kevin extends ObjetEnnemi{
         //     repeat: -1,
         // });
         // this.anims.play('move', true);
+        this.anims.create({
+            key: 'stand',
+            frames: this.anims.generateFrameNumbers('kevin', { start: 0, end: 9 }),
+            frameRate: 7,
+            repeat: -1
+            // frames: [ { key: 'player', frame: 1 } ],
+            // frameRate: 20
+        });
 
+        this.anims.play('stand',true);
 
     }
 
     update(player)
     {
-        if(this.body)
-        {
-            if(this.body.velocity.x < 0)
-            {
-                this.flipX=true;
-                if(this.move)
-                {
-                    this.setVelocityX(-40*(Math.random()+1.5));
-                    this.move = false;
-                }
-            }
-            else
-            {
-                this.flipX=false;
-                if(!this.move)
-                {
-                    this.setVelocityX(40*(Math.random()+1.5));
-                    this.move = true;
-                }
-            }
-        }
+        
 
 
     }

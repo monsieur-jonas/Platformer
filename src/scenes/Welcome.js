@@ -12,7 +12,7 @@ class Welcome extends Phaser.Scene {
         //this.load.spritesheet('cp', 'assets/cp.png', { frameWidth: 206, frameHeight: 184 } );
 
         // audios
-        //this.load.audio('welcome1', 'assets/Sound/Dark-Hero-3.mp3');
+        
         this.load.audio('welcome', 'assets/Sound/intro.wav');
     }
   
