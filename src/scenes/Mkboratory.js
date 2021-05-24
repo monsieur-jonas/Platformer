@@ -18,7 +18,7 @@ class Mkboratory extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap09.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap13.json');
 
         // -----et puis aussi-------------
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
@@ -69,6 +69,7 @@ class Mkboratory extends Tableau{
 
         this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
+        this.derriere2 = this.map.createLayer('derriere2', this.tileset, 0, 0);
 
         //on définit les collisions
 
@@ -151,8 +152,9 @@ class Mkboratory extends Tableau{
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
-
+        this.derriere2.setDepth(z--);
         this.derriere.setDepth(z--);
+
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
 

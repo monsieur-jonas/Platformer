@@ -42,22 +42,8 @@ class Tableau extends Phaser.Scene{
          */
         this.player=new Player(this,0,1500);
 
-        this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
-        this.boom.displayWidth=64;
-        this.boom.displayHeight=64;
-        this.boom.visible=false;
-        this.boom.setDepth(50)
-
         this.boutonTir = this.input.keyboard.addKey('A');
 
-
-
-        this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explode', { start: 0, end: 5 }),
-            frameRate: 7,
-            repeat: -1
-        });
         this.input.on('pointerdown', function () {
             this.cameras.main.shake(10);
         }, this);
