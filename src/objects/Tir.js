@@ -3,7 +3,7 @@ class Tir extends ObjetPhysique{
        super(scene, x +15, y -20, "tir");
        scene.add.existing(this);
        scene.physics.add.existing(this);
- 
+       scene.physics.add.collider(scene.physics, this, function(){this.destroy()}, null, scene);
        //scene.physics.add.overlap(scene.monsterContainer.first, this, function(){scene.monsterContainer.first.tirOnMonster()}, null, scene);
        this.body.allowGravity=false;
        this.setDisplaySize(10,10);

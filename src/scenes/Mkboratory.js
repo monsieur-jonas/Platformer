@@ -1,33 +1,20 @@
 class Mkboratory extends Tableau{
-    /**
-     * Ce tableau démontre comment se servir de Tiled, un petit logiciel qui permet de designer des levels et de les importer dans Phaser (entre autre).
-     *
-     * Ce qui suit est très fortement inspiré de ce tuto :
-     * https://stackabuse.com/phaser-3-and-tiled-building-a-platformer/
-     *
-     * Je vous conseille aussi ce tuto qui propose quelques alternatives (la manière dont son découpées certaines maisons notamment) :
-     * https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-     */
+    
      constructor()
     {
         super("labo");
     }
     preload() {
         super.preload();
-        // ------pour TILED-------------
-        // nos images
-        this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
-        //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap13.json');
 
-        // -----et puis aussi-------------
+        this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
+
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap14.json');
+
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
         this.load.image('tir', 'assets/bullet01.png');
 
-
-
-        //on y trouve notre étoiles et une tête de mort
     }
     create() {
         super.create();
