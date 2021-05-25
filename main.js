@@ -10,7 +10,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: true,
+            debug: false,
         }
     },
     scene: [
@@ -18,7 +18,7 @@ let config = {
         new Welcome("cliquez"),
         new Mkboratory("avancez"),
 
-        
+
 
     ],
     width: width,

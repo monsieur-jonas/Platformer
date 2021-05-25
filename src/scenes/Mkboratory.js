@@ -1,5 +1,5 @@
 class Mkboratory extends Tableau{
-    
+
      constructor()
     {
         super("labo");
@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap16.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap21.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -18,6 +18,8 @@ class Mkboratory extends Tableau{
     }
     create() {
         super.create();
+
+
 
         this.musicAmb = this.sound.add('ingame');
 
@@ -53,7 +55,8 @@ class Mkboratory extends Tableau{
         this.cameras.main.startFollow(this.player, true, 1, 1.2);
 
         //---- ajoute les plateformes simples ----------------------------
-
+        this.clignot = this.map.createLayer('clignot', this.tileset, 0, 0);
+        this.light = this.map.createLayer('light', this.tileset, 0, 0);
         this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         this.derriere2 = this.map.createLayer('derriere2', this.tileset, 0, 0);
@@ -76,9 +79,24 @@ class Mkboratory extends Tableau{
         ici.kevin = ici.map.getObjectLayer('kevin')['objects'];
         // On crée des montres pour chaque objet rencontré
         ici.kevin.forEach(monsterObject => {
-            let monster=new Kevin(this,monsterObject.x,monsterObject.y);
+            let monster=new Kevin(this,monsterObject.x+33,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider (monster,this.devant)
+        });
+        this.plightContainer=this.add.container();
+        ici.plight = ici.map.getObjectLayer('light')['objects'];
+        ici.plight.forEach(plightObjects => {
+          let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
+          light.addLight(this,204,229,151, 150, 0.5, 0.04);
+          this.plightContainer.add(light);
+        });
+
+        this.clignotContainer=this.add.container();
+        ici.clignot = ici.map.getObjectLayer('clignot')['objects'];
+        ici.clignot.forEach(clignotObjects => {
+          let clignot = new Light(this,clignotObjects.x+16,clignotObjects.y-10).setDepth(9999);
+          clignot.addLight(this,250,125,167, 150, 0.5, 0.04);
+          this.clignotContainer.add(clignot);
         });
         //----------débug---------------------
 
@@ -144,6 +162,8 @@ class Mkboratory extends Tableau{
 
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
+
+
 
     }
 

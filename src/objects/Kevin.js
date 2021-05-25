@@ -14,7 +14,8 @@ class Kevin extends ObjetEnnemi{
         this.scale = 1;
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
-        //this.setBodySize(this.body.width,this.body.height);
+        this.setOffset(-15,0)
+        this.setBodySize(this.body.width/2,this.body.height);
         this.move = true;
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
@@ -40,7 +41,7 @@ class Kevin extends ObjetEnnemi{
 
     update(player)
     {
-        
+
 
 
     }
