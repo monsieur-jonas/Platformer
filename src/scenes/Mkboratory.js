@@ -87,7 +87,7 @@ class Mkboratory extends Tableau{
         ici.plight = ici.map.getObjectLayer('light')['objects'];
         ici.plight.forEach(plightObjects => {
           let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
-          light.addLight(this,204,229,151, 150, 0.5, 0.04);
+          light.addLight(this,204,229,151, 200, 0.3, 0.04);
           this.plightContainer.add(light);
         });
 
@@ -95,7 +95,7 @@ class Mkboratory extends Tableau{
         ici.clignot = ici.map.getObjectLayer('clignot')['objects'];
         ici.clignot.forEach(clignotObjects => {
           let clignot = new Light(this,clignotObjects.x+16,clignotObjects.y-10).setDepth(9999);
-          clignot.addLight(this,250,125,167, 150, 0.5, 0.04);
+          clignot.addLight(this,204,229,151, 200, 0.3, 0.04);
           this.clignotContainer.add(clignot);
         });
         //----------débug---------------------
