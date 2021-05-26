@@ -41,7 +41,7 @@ class Mkboratory extends Tableau{
         this.passage = true
         this.passageCamera = false;
         //--------chargement de la tile map & configuration de la scène-----------------------
-
+        //let blight = this.add.pointlight(1000, 1000, 0, 10, 0.5);
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
@@ -74,6 +74,7 @@ class Mkboratory extends Tableau{
             immovable: false,
             bounceY:1
         });
+
         //--------------monstres-------------------
         this.monstersContainer=this.add.container();
         ici.kevin = ici.map.getObjectLayer('kevin')['objects'];
