@@ -14,26 +14,28 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setBodySize(this.body.width-6,this.body.height-10);
         this.setOffset(0, 10);
 
-        // this.anims.create({
-        //     key: 'left',
-        //     frames: this.anims.generateFrameNumbers('player', { start: 14, end: 16 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        // });
 
-        // this.anims.create({
-        //     key: 'right',
-        //     frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        // });
+        this.anims.create({
+           key: 'walk',
+           frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
+           frameRate: 7,
+             repeat: -1
+         });
         this.anims.create({
             key: 'stand',
             frames: this.anims.generateFrameNumbers('player', { start: 0, end: 16 }),
             frameRate: 7,
             repeat: -1
-            // frames: [ { key: 'player', frame: 1 } ],
-            // frameRate: 20
+        this.anims.create({
+            key: 'jump',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 16 }),
+            frameRate: 7,
+
+        this.anims.create({
+            key: 'down',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 16 }),
+            frameRate: 7,
+            repeat: -1
         });
 
         this._directionX=0;
@@ -67,13 +69,22 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         switch (true){
             case this._directionX<0:
                 this.setVelocityX(-160);
-                this.anims.play('left', true);
+                this.anims.play('walk', true);
                 this.flipX =true;
                 break;
             case this._directionX>0:
-
                 this.setVelocityX(160);
-                this.anims.play('right', true);
+                this.anims.play('walk', true);
+                this.flipX =false;
+                break;
+            case this._directionY>0:
+                this.setVelocityX(160);
+                this.anims.play('jump', true);
+                this.flipX =false;
+                break;
+            case this._directionY<0:
+                this.setVelocityX(160);
+                this.anims.play('down', true);
                 this.flipX =false;
                 break;
             default:
