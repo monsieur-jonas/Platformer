@@ -18,7 +18,7 @@ class Tableau extends Phaser.Scene{
     this.load.image('boom', 'assets/blood.jpg');
     this.load.image('spike', 'assets/spike.png');
     this.load.image('bullet', 'assets/bullet01.png');
-    this.load.image('night', 'assets/superfond.jpg');
+    this.load.image('night', 'assets/placeholderfond.jpg');
     this.load.audio('tir', 'assets/sound/shoot.wav');
     this.load.spritesheet('explode','assets/explode.png',
     { frameWidth: 50, frameHeight: 50  }
@@ -28,8 +28,8 @@ class Tableau extends Phaser.Scene{
   { frameWidth: 71, frameHeight: 119  }
 );
 this.load.spritesheet('player',
-'assets/mikelegentil.png',
-{ frameWidth: 60, frameHeight: 125  }
+'assets/mike04.png',
+{ frameWidth: 64, frameHeight: 125  }
 );
 }
 create(){

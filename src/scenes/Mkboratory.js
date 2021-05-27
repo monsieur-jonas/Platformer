@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap21.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap28.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -38,7 +38,7 @@ class Mkboratory extends Tableau{
         let ici=this;
 
         this.passageMusic = false;
-        this.passage = true
+        this.passage = true;
         this.passageCamera = false;
         //--------chargement de la tile map & configuration de la scène-----------------------
         //let blight = this.add.pointlight(1000, 1000, 0, 10, 0.5);
@@ -52,17 +52,19 @@ class Mkboratory extends Tableau{
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
-        this.cameras.main.startFollow(this.player, true, 1, 1.2);
+        this.cameras.main.startFollow(this.player, true, 1, 0.1);
 
         //---- ajoute les plateformes simples ----------------------------
         this.clignot = this.map.createLayer('clignot', this.tileset, 0, 0);
         this.light = this.map.createLayer('light', this.tileset, 0, 0);
+        this.escalier = this.map.createLayer('escalier', this.tileset, 0, 16);
         this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         this.derriere2 = this.map.createLayer('derriere2', this.tileset, 0, 0);
 
         //on définit les collisions
-
+        this.escalier.setCollisionByProperty({ collide: true });
+        this.escalier.setCollisionByExclusion(-1, true);
         this.devant.setCollisionByProperty({ collide: true });
         this.devant.setCollisionByExclusion(-1, true);
         //this.lave.setCollisionByProperty({ collide: true });
@@ -88,17 +90,24 @@ class Mkboratory extends Tableau{
         ici.plight = ici.map.getObjectLayer('light')['objects'];
         ici.plight.forEach(plightObjects => {
           let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
-          light.addLight(this,204,229,151, 200, 0.3, 0.04);
+          light.addLight(this,204,229,151, 200, 0.3, 0.04,false);
           this.plightContainer.add(light);
         });
+
 
         this.clignotContainer=this.add.container();
         ici.clignot = ici.map.getObjectLayer('clignot')['objects'];
         ici.clignot.forEach(clignotObjects => {
           let clignot = new Light(this,clignotObjects.x+16,clignotObjects.y-10).setDepth(9999);
-          clignot.addLight(this,204,229,151, 200, 0.3, 0.04);
+          clignot.addLight(this,204,229,151, 200, 0.3, 0.04,true);
           this.clignotContainer.add(clignot);
         });
+
+
+
+
+
+
         //----------débug---------------------
 
         //pour débugger les collisions sur chaque layer
@@ -134,10 +143,9 @@ class Mkboratory extends Tableau{
         //----------collisions---------------------
 
         //quoi collide avec quoi?
+        this.physics.add.collider(this.player, this.escalier);
         this.physics.add.collider(this.player, this.devant);
-        this.physics.add.collider(this.stars, this.devant);
         //si le joueur touche une étoile dans le groupe...
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         //quand on touche la lave, on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
 
@@ -151,7 +159,9 @@ class Mkboratory extends Tableau{
         this.stars.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
+        this.escalier.setDepth(z--);
         this.devant.setDepth(z--);
+
 
 
         //this.solides.setDepth(z--);
