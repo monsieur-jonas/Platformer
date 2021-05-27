@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap28.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap04.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -41,7 +41,6 @@ class Mkboratory extends Tableau{
         this.passage = true;
         this.passageCamera = false;
         //--------chargement de la tile map & configuration de la scène-----------------------
-        //let blight = this.add.pointlight(1000, 1000, 0, 10, 0.5);
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
@@ -56,7 +55,9 @@ class Mkboratory extends Tableau{
 
         //---- ajoute les plateformes simples ----------------------------
         this.clignot = this.map.createLayer('clignot', this.tileset, 0, 0);
+        this.cuvelight = this.map.createLayer('cuvelight', this.tileset, 0, 0);
         this.light = this.map.createLayer('light', this.tileset, 0, 0);
+        this.greenlight = this.map.createLayer('greenlight', this.tileset, 0, 0);
         this.escalier = this.map.createLayer('escalier', this.tileset, 0, 16);
         this.devant = this.map.createLayer('physique', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
@@ -94,6 +95,21 @@ class Mkboratory extends Tableau{
           this.plightContainer.add(light);
         });
 
+        this.greenlightContainer=this.add.container();
+        ici.greenlight = ici.map.getObjectLayer('greenlight')['objects'];
+        ici.greenlight.forEach(greenlightObjects => {
+          let light = new Light(this,greenlightObjects.x+16,greenlightObjects.y-10).setDepth(9999);
+          light.addLight(this,92,203,69, 200, 0.5, 0.04,false);
+          this.greenlightContainer.add(light);
+        });
+
+        this.cuvelightContainer=this.add.container();
+        ici.cuvelight = ici.map.getObjectLayer('cuvelight')['objects'];
+        ici.cuvelight.forEach(cuvelightObjects => {
+          let light = new Light(this,cuvelightObjects.x+16,cuvelightObjects.y-10).setDepth(9999);
+          light.addLight(this,92,203,69, 200, 0.3, 0.04,false);
+          this.cuvelightContainer.add(light);
+        });
 
         this.clignotContainer=this.add.container();
         ici.clignot = ici.map.getObjectLayer('clignot')['objects'];
