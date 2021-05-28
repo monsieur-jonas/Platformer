@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap07.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap10.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -56,6 +56,7 @@ class Mkboratory extends Tableau{
         //---- ajoute d'elements simples ----------------------------
         this.clignot = this.map.createLayer('clignot', this.tileset, 0, 0);
         this.cuvelight = this.map.createLayer('cuvelight', this.tileset, 0, 0);
+        this.screenlight = this.map.createLayer('screenlight', this.tileset, 0, 0);
         this.light = this.map.createLayer('light', this.tileset, 0, 0);
         this.greenlight = this.map.createLayer('greenlight', this.tileset, 0, 0);
         this.escalier = this.map.createLayer('escalier', this.tileset, 0, 16);
@@ -109,6 +110,14 @@ class Mkboratory extends Tableau{
           let light = new Light(this,cuvelightObjects.x+16,cuvelightObjects.y-10).setDepth(9999);
           light.addLight(this,92,203,69, 200, 0.3, 0.04,false);
           this.cuvelightContainer.add(light);
+        });
+
+        this.screenlightContainer=this.add.container();
+        ici.screenlightlight = ici.map.getObjectLayer('screenlight')['objects'];
+        ici.screenlightlight.forEach(screenlightObjects => {
+          let light = new Light(this,screenlightObjects.x+16,screenlightObjects.y-10).setDepth(9999);
+          light.addLight(this,92,203,69, 200, 0.1, 0.04,false);
+          this.screenlightContainer.add(light);
         });
 
         this.clignotContainer=this.add.container();

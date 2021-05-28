@@ -47,7 +47,7 @@ create(){
   this.boutonTir = this.input.keyboard.addKey('A');
 
   this.input.on('pointerdown', function () {
-    this.cameras.main.shake(10);
+
   }, this);
 
 
