@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap05.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap06.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -160,6 +160,7 @@ class Mkboratory extends Tableau{
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.escalier);
+        this.physics.add.collider(this.kevin, this.escalier);
         this.physics.add.collider(this.player, this.devant);
         //si le joueur touche une étoile dans le groupe...
         //quand on touche la lave, on meurt

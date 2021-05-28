@@ -8,6 +8,8 @@ class Kevin extends ObjetEnnemi{
     constructor(scene, x, y) {
         super(scene, x, y,"kevin");
         //pas de gravité
+        this.dir = 1;
+        this.isAlive = true;
         this.body.allowGravity=true;
 
         //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
@@ -16,19 +18,19 @@ class Kevin extends ObjetEnnemi{
         this.setBounceX(1);
         this.setOffset(-15,0)
         this.setBodySize(this.body.width/2,this.body.height);
+        scene.time.addEvent({ delay: 1000, callback: this.move, callbackScope: this, loop: true });
         this.move = true;
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
-        // this.anims.create({
-        //     key: 'move',
-        //     frames: this.anims.generateFrameNumbers('kevin', { start: 7, end: 10 }),
-        //     frameRate: 4,
-        //     repeat: -1,
-        // });
-        // this.anims.play('move', true);
+         this.anims.create({
+             key: 'move',
+             frames: this.anims.generateFrameNumbers('kevin', { start: 9, end: 15 }),
+             frameRate: 7,
+             repeat: -1,
+         });
         this.anims.create({
             key: 'stand',
-            frames: this.anims.generateFrameNumbers('kevin', { start: 0, end: 9 }),
+            frames: this.anims.generateFrameNumbers('kevin', { start: 0, end: 8 }),
             frameRate: 7,
             repeat: -1
             // frames: [ { key: 'player', frame: 1 } ],
@@ -37,14 +39,59 @@ class Kevin extends ObjetEnnemi{
 
         this.anims.play('stand',true);
 
-    }
 
-    update(player)
+
+    }
+    move(){
+      this.pos();
+      if(this.dir>0){
+            this.anims.play('move', true);
+            this.flipX =true;
+        }else{
+            this.anims.play('move', true);
+        }
+
+        if(this.isAlive) {
+            if (this.scene.player.x > this.x - 300 && this.scene.player.x < this.x + 300  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
+                //this.runPatSound.play({volume:0.5});
+                //if(this.scene.player.y>this.y){
+                this.setVelocityX(100 * this.dir);
+                if(this.dir>0){
+                    this.anims.play('move', true);
+                    this.flipX =true;
+                }else{
+                    this.anims.play('move', true);
+
+                }
+
+                //}
+                /*else if(this.scene.player.y<this.y){
+                    this.setVelocityY(200);
+                }*/
+
+            }
+            else{
+                this.setVelocityX(0);
+                this.anims.play('stand',true);
+            }
+        }
+
+    }
+    pos(){
+            if (this.x < this.scene.player.x)
+            {
+                this.dir = 1;
+            }
+            else if (this.x > this.scene.player.x)
+            {
+                this.dir = -1;
+            }
+        }
+
+    /*update()
     {
-
-
-
-    }
+      this.move();
+    }*/
 
 
     stop()
