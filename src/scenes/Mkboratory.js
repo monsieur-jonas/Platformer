@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap04.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap05.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -53,7 +53,7 @@ class Mkboratory extends Tableau{
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.cameras.main.startFollow(this.player, true, 1, 0.1);
 
-        //---- ajoute les plateformes simples ----------------------------
+        //---- ajoute d'elements simples ----------------------------
         this.clignot = this.map.createLayer('clignot', this.tileset, 0, 0);
         this.cuvelight = this.map.createLayer('cuvelight', this.tileset, 0, 0);
         this.light = this.map.createLayer('light', this.tileset, 0, 0);
