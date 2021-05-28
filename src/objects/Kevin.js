@@ -49,6 +49,7 @@ class Kevin extends ObjetEnnemi{
             this.flipX =true;
         }else{
             this.anims.play('move', true);
+            this.flipX =false;
         }
 
         if(this.isAlive) {
@@ -61,6 +62,7 @@ class Kevin extends ObjetEnnemi{
                     this.flipX =true;
                 }else{
                     this.anims.play('move', true);
+                    this.flipX =false;
 
                 }
 

@@ -64,13 +64,6 @@ tirPlayer(){
   }
 }
 
-
-
-
-
-
-
-
 ramasserEtoile (player, star)
 {
   star.disableBody(true, true);
