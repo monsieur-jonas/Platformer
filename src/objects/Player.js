@@ -21,7 +21,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
     this.anims.create({
       key: 'walk',
-      frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 20, end: 27 }),
       frameRate: 7,
       repeat: -1
     });
@@ -33,11 +33,12 @@ class Player extends Phaser.Physics.Arcade.Sprite{
       repeat: -1
     });
 
-    //this.anims.create({
-    //  key: 'jump',
-    //  frames: this.anims.generateFrameNumbers('player', { start: 16, end: 16 }),
-    //  frameRate: 7
-    //});
+    this.anims.create({
+      key: 'jump',
+      frames: [{ key: 'player', frame:28}],
+      frameRate: 1,
+      repeat: -1
+    });
 
     //this.anims.create({
     //  key: 'down',
@@ -97,16 +98,19 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
 
 
+
+
+
     switch (true){
       case this._directionX<0:
       this.setVelocityX(-160);
-      this.anims.play('walk', true);
+      if(this.body.blocked.down){this.anims.play('walk', true);}else{this.anims.play('jump');}
       this.flipX =true;
       break;
 
       case this._directionX>0:
       this.setVelocityX(160);
-      this.anims.play('walk', true);
+      if(this.body.blocked.down){this.anims.play('walk', true);}else{this.anims.play('jump');}
       this.flipX =false;
       break;
 
@@ -116,53 +120,57 @@ class Player extends Phaser.Physics.Arcade.Sprite{
       break;
 
       case this._directionY<0:
+      this.anims.play('jump');
       if(this.body.touching.down){
         this.setVelocityY(-300);
         this.flipX =false;
 
       }
-      this.anims.play('jump', true);
+
 
       break;
 
 
 
       default:
-
-      this.anims.play('stand', true);
-      this.setVelocityX(0);
-      break;
-    }
-
-    if(this._directionY<0){
-      if(this.body.blocked.down || this.body.touching.down){
-        this.setVelocityY(-800);
+      if(!this.body.blocked.down){
+        console.log('aaaa');
+        this.anims.play('jump');
+      }else{
+        this.anims.play('stand', true);
+        this.setVelocityX(0);}
+        break;
       }
-    }
 
-    // if(this.body.velocity.x == 0){
-    //         this.anims.play('stand')}
+      if(this._directionY<0){
+        if(this.body.blocked.down || this.body.touching.down){
+          this.setVelocityY(-800);
+        }
+      }
+
+      // if(this.body.velocity.x == 0){
+      //         this.anims.play('stand')}
+
+
+    }
+    shootBeam()
+    {
+      if(this.rechargeSonTir === false) { //on vérifie si on a recharger le coup
+
+        this.rechargeSonTir = true; //lance la recharge
+        var bullet = new Tir(this.scene,this.x, this.y);
+        console.log("Tir");
+        setTimeout(function(){
+          bullet.destroy();
+        },500);
+        setTimeout(function () {
+          Tableau.current.player.rechargeSonTir = false;
+        }, 2000);
+        this.tirer = true;
+      }
+
+
+    }
 
 
   }
-  shootBeam()
-  {
-    if(this.rechargeSonTir === false) { //on vérifie si on a recharger le coup
-
-      this.rechargeSonTir = true; //lance la recharge
-      var bullet = new Tir(this.scene,this.x, this.y);
-      console.log("Tir");
-      setTimeout(function(){
-        bullet.destroy();
-      },500);
-      setTimeout(function () {
-        Tableau.current.player.rechargeSonTir = false;
-      }, 2000);
-      this.tirer = true;
-    }
-
-
-  }
-
-
-}

@@ -2,7 +2,7 @@ class Welcome extends Phaser.Scene {
     constructor(){
       super("bootGame");
     }
-  
+
     preload ()
     {
         // images
@@ -13,10 +13,10 @@ class Welcome extends Phaser.Scene {
         //this.load.spritesheet('cp', 'assets/cp.png', { frameWidth: 206, frameHeight: 184 } );
 
         // audios
-        
-        this.load.audio('welcome', 'assets/Sound/intro.wav');
+
+        this.load.audio('welcome', 'assets/sound/intro.wav');
     }
-  
+
     create()
     {
         this.add.sprite(game.config.width/2,game.config.height/2,'startBG');
