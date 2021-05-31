@@ -24,11 +24,11 @@ class Tableau extends Phaser.Scene{
     { frameWidth: 50, frameHeight: 50  }
   );
   this.load.spritesheet('kevin',
-  'assets/kevin03.png',
+  'assets/kevin06.png',
   { frameWidth: 71, frameHeight: 119  }
 );
 this.load.spritesheet('player',
-'assets/mike04.png',
+'assets/mike03.png',
 { frameWidth: 64, frameHeight: 125  }
 );
 }
@@ -92,16 +92,19 @@ ramasserEtoile (player, star)
 }
 
 hitMonster(player, monster){
-  let me=this;
-  if(!monster.isDead){
-    if(!me.player.isDead){
-      me.player.isDead=true;
-      me.player.visible=false;
-      me.player.isDead=false;
-      me.scene.restart();
-    }
+  if (monster.isAlive){
+    let me=this;
+    if(!monster.isDead){
+      if(!me.player.isDead){
+        me.player.isDead=true;
+        me.player.visible=false;
+        me.player.isDead=false;
+        me.scene.restart();
+      }
 
+    }
   }
+
 
 
 }

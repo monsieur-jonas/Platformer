@@ -6,6 +6,7 @@ class Ui extends Phaser.Scene{
     }
     preload(){
         this.load.image('ui/full-screen-icon', 'assets/ui/full-screen.png');
+        this.load.image('ui/reloadicon', 'assets/ui/reloadicon.png');
     }
     create (){
         console.log("create Ui")
@@ -20,6 +21,9 @@ class Ui extends Phaser.Scene{
             font:'32px "Hanalei Fill"',
             fill: '#fff'
         });
+
+        let Reloadicon=this.add.image(100,100,'ui/reloadicon');
+
 
         /**
          * Le champ texte avec la clé du tableau
@@ -59,7 +63,7 @@ class Ui extends Phaser.Scene{
 
         let me=this;
         setTimeout(function(){
-            me.tableau="Hello World";
+            me.tableau="aidez nous...";
             me.gagne(0)
         },100)
 
@@ -92,9 +96,14 @@ class Ui extends Phaser.Scene{
     gagne(points=10)
     {
         this.score+=points;
-        this._scoreText.setText('Score: ' + this.score);
     }
     update(){
+      if(this.rechargeSonTir){
+        Reloadicon.setAlpha(0.5);
+      }
+      //else
+      //  Reloadicon.setAlpha(1);
+
         if(Tableau.current){
             this._tableauText.setText(Tableau.current.scene.key);
             this._tableauTextClass.setText(Tableau.current.constructor.name);

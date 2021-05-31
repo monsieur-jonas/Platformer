@@ -116,7 +116,7 @@ class Mkboratory extends Tableau{
         ici.screenlightlight = ici.map.getObjectLayer('screenlight')['objects'];
         ici.screenlightlight.forEach(screenlightObjects => {
           let light = new Light(this,screenlightObjects.x+16,screenlightObjects.y-10).setDepth(9999);
-          light.addLight(this,92,203,69, 200, 0.1, 0.04,false);
+          light.addLight(this,255,255,255, 200, 0.2, 0.04,false);
           this.screenlightContainer.add(light);
         });
 
@@ -181,7 +181,7 @@ class Mkboratory extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
         //this.boom.setDepth(z--);
-
+        this.player.setDepth(z--);
         this.stars.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
@@ -193,7 +193,7 @@ class Mkboratory extends Tableau{
         //this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
-        this.player.setDepth(z--);
+
         this.derriere2.setDepth(z--);
         this.derriere.setDepth(z--);
 
