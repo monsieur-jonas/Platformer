@@ -145,25 +145,33 @@ class Mkboratory extends Tableau{
         //---------- parallax ciel (rien de nouveau) -------------
 
         //on change de ciel, on fait une tileSprite ce qui permet d'avoir une image qui se répète
-        this.sky=this.add.tileSprite(
+        this.skyy01=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'night'
+            'skyy01'
         );
-        this.sky2=this.add.tileSprite(
+        this.skyy2=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'night'
+            'skyy2'
         );
-        this.sky.setOrigin(0,0);
-        this.sky2.setOrigin(0,0);
-        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.sky2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.sky2.blendMode=Phaser.BlendModes.ADD;
+        this.skyy3=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'skyy3'
+        );
+        this.skyy01.setOrigin(0,0);
+        this.skyy2.setOrigin(0,0);
+        this.skyy3.setOrigin(0,0);
+        this.skyy01.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.skyy2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.skyy3.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
 
         //----------collisions---------------------
 
@@ -197,8 +205,14 @@ class Mkboratory extends Tableau{
         this.derriere2.setDepth(z--);
         this.derriere.setDepth(z--);
 
-        this.sky2.setDepth(z--);
-        this.sky.setDepth(z--);
+
+
+
+        this.skyy3.setDepth(z--);
+        this.skyy2.setDepth(z--);
+        this.skyy01.setDepth(z--);
+
+
 
 
 
@@ -218,10 +232,12 @@ class Mkboratory extends Tableau{
      */
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
-        this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
-        this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
-        this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
-        this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
+        this.skyy01.tilePositionX=this.cameras.main.scrollX*0;
+        this.skyy01.tilePositionY=this.cameras.main.scrollY*0;
+        this.skyy2.tilePositionX=this.cameras.main.scrollX*0.7+100;
+        this.skyy2.tilePositionY=this.cameras.main.scrollY*0.7+100;
+        this.skyy3.tilePositionX=this.cameras.main.scrollX*0.7+500;
+        this.skyy3.tilePositionY=this.cameras.main.scrollY*0.7+500;
     }
 
 
