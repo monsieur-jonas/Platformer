@@ -1,6 +1,6 @@
 class Tir extends ObjetPhysique{
     constructor(scene, x, y){
-       super(scene, x +12, y -17, "tir");
+       super(scene, x +15, y -30, "tir");
        scene.add.existing(this);
        scene.physics.add.existing(this);
        scene.physics.add.collider(scene.physics, this, function(){this.destroy()}, null, scene);

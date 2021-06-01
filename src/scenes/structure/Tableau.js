@@ -21,7 +21,8 @@ class Tableau extends Phaser.Scene{
     this.load.image('skyy01', 'assets/skyy01.png');
     this.load.image('skyy2', 'assets/skyy2.png');
     this.load.image('skyy3', 'assets/skyy3.png');
-    this.load.audio('tir', 'assets/sound/shoot.wav');
+    this.load.audio('tir', 'assets/sound/sontir.wav');
+    this.load.audio('pastir', 'assets/sound/sonpastir.wav');
     this.load.spritesheet('explode','assets/explode.png',
     { frameWidth: 50, frameHeight: 50  }
   );
@@ -38,7 +39,7 @@ create(){
   Tableau.current=this;
   this.sys.scene.scale.lockOrientation("landscape")
   console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
-  this.sonTir = this.sound.add('tir');
+
 
   /**
   * Le joueur
@@ -62,7 +63,7 @@ update(){
 tirPlayer(){
   if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
     this.player.shootBeam();
-    this.sonTir.play();
+
   }
 }
 

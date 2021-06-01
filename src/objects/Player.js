@@ -16,7 +16,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     this.setBodySize(this.body.width-6,this.body.height-10);
     this.setOffset(0, 10);
     this.rechargeSonTir = false;
-
+    this.sonTir = scene.sound.add('tir');
+    this.sonPasTir = scene.sound.add('pastir');
 
 
     this.anims.create({
@@ -156,7 +157,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     shootBeam()
     {
       if(this.rechargeSonTir === false) { //on vérifie si on a recharger le coup
-
+        this.sonTir.play();
         this.rechargeSonTir = true; //lance la recharge
         var bullet = new Tir(this.scene,this.x, this.y);
         console.log("Tir");
@@ -167,6 +168,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
           Tableau.current.player.rechargeSonTir = false;
         }, 2000);
         this.tirer = true;
+      }
+      else {
+        this.sonPasTir.play();
       }
 
 
