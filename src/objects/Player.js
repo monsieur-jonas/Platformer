@@ -166,7 +166,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         },500);
         setTimeout(function () {
           Tableau.current.player.rechargeSonTir = false;
-        }, 2000);
+        }, 10);
         this.tirer = true;
       }
       else {

@@ -35,8 +35,14 @@ this.load.spritesheet('player','assets/mike11.png',
 this.load.spritesheet('oscar','assets/oscare02.png',
 { frameWidth: 100, frameHeight: 160  }
 );
-this.load.spritesheet('beyan','assets/bryane.png',
+this.load.spritesheet('bryan','assets/bryane.png',
 { frameWidth: 85, frameHeight: 125  }
+);
+this.load.spritesheet('shlagos','assets/shlagos02.png',
+{ frameWidth: 60, frameHeight: 100  }
+);
+this.load.spritesheet('mk','assets/mkcinematic.png',
+{ frameWidth: 162, frameHeight: 164  }
 );
 }
 create(){

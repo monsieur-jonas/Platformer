@@ -9,7 +9,7 @@ class Mkboratory extends Tableau{
 
         this.load.image('tiles', 'assets/tiled/tilesetexperiences_01.png');
 
-        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap18.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/exmap22.json');
 
         //this.load.audio('welcome', 'assets/Sound/intro.wav');
         this.load.audio('ingame', 'assets/Sound/ingame.wav');
@@ -89,10 +89,34 @@ class Mkboratory extends Tableau{
             this.physics.add.collider (monster,this.devant)
         });
 
+        ici.mk = ici.map.getObjectLayer('mk')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        ici.mk.forEach(monsterObject => {
+            let monster=new Mk(this,monsterObject.x+33,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider (monster,this.devant)
+        });
+
         ici.oscar = ici.map.getObjectLayer('oscar')['objects'];
         // On crée des montres pour chaque objet rencontré
         ici.oscar.forEach(monsterObject => {
             let monster=new Oscar(this,monsterObject.x+33,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider (monster,this.devant)
+        });
+
+        ici.bryan = ici.map.getObjectLayer('bryan')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        ici.bryan.forEach(monsterObject => {
+            let monster=new Bryan(this,monsterObject.x+33,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider (monster,this.devant)
+        });
+
+        ici.shlagos = ici.map.getObjectLayer('shlagos')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        ici.shlagos.forEach(monsterObject => {
+            let monster=new Shlagos(this,monsterObject.x+33,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider (monster,this.devant)
         });
