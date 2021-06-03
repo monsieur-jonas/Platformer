@@ -1,4 +1,4 @@
-class Kevin extends ObjetEnnemi{
+class Oscar extends ObjetEnnemi{
   /**
   *
   * @param {Tableau} scene
@@ -6,14 +6,14 @@ class Kevin extends ObjetEnnemi{
   * @param y
   */
   constructor(scene, x, y) {
-    super(scene, x, y,"kevin");
+    super(scene, x, y,"oscar");
     //pas de gravité
     this.dir = 1;
     this.isAlive = true;
     this.dieOnce = false;
     this.body.allowGravity=true;
     this.isMoving = false;
-    this.vie=1;
+    this.vie=3;
     //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
     this.scale = 1;
     this.setCollideWorldBounds(true);
@@ -26,13 +26,13 @@ class Kevin extends ObjetEnnemi{
 
     this.anims.create({
       key: 'move',
-      frames: this.anims.generateFrameNumbers('kevin', { start: 9, end: 15 }),
+      frames: this.anims.generateFrameNumbers('oscar', { start: 20, end: 29 }),
       frameRate: 7,
       repeat: -1,
     });
     this.anims.create({
       key: 'stand',
-      frames: this.anims.generateFrameNumbers('kevin', { start: 0, end: 8 }),
+      frames: this.anims.generateFrameNumbers('oscar', { start: 0, end: 19 }),
       frameRate: 7,
       repeat: -1
       // frames: [ { key: 'player', frame: 1 } ],
@@ -40,8 +40,13 @@ class Kevin extends ObjetEnnemi{
     });
     this.anims.create({
       key: 'die',
-      frames: this.anims.generateFrameNumbers('kevin', { start: 16, end: 19 }),
-      frameRate: 10,
+      frames: this.anims.generateFrameNumbers('oscar', { start: 30, end: 43 }),
+      frameRate: 8,
+    });
+
+    this.anims.create({
+      key: 'dmg',
+      frames: [{ key: 'oscar', frame:44}],
     });
 
     this.anims.play('stand',true);
@@ -56,7 +61,7 @@ class Kevin extends ObjetEnnemi{
     if(this.isAlive) {
       this.pos();
       this.checkSide(this.isMoving);
-      if (this.scene.player.x > this.x - 300 && this.scene.player.x < this.x + 300  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
+      if (this.scene.player.x > this.x - 350 && this.scene.player.x < this.x + 350  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
         this.isMoving = true;
@@ -90,11 +95,13 @@ class Kevin extends ObjetEnnemi{
 moinsvie(){
   if(this.vie>0){
     this.vie--;
+    this.anims.play('dmg',true);
     if(this.vie===0){
       this.Tmortlol();
     }
   }
 }
+
 
 checkSide(isMoving){
   if(this.dir>0){

@@ -88,6 +88,15 @@ class Mkboratory extends Tableau{
             this.monstersContainer.add(monster);
             this.physics.add.collider (monster,this.devant)
         });
+
+        ici.oscar = ici.map.getObjectLayer('oscar')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        ici.oscar.forEach(monsterObject => {
+            let monster=new Oscar(this,monsterObject.x+33,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider (monster,this.devant)
+        });
+
         this.plightContainer=this.add.container();
         ici.plight = ici.map.getObjectLayer('light')['objects'];
         ici.plight.forEach(plightObjects => {
@@ -145,33 +154,33 @@ class Mkboratory extends Tableau{
         //---------- parallax ciel (rien de nouveau) -------------
 
         //on change de ciel, on fait une tileSprite ce qui permet d'avoir une image qui se répète
-        this.skyy01=this.add.tileSprite(
+        this.sky1=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'skyy01'
+            'sky1'
         );
-        this.skyy2=this.add.tileSprite(
+        this.sky2=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'skyy2'
+            'sky2'
         );
-        this.skyy3=this.add.tileSprite(
+        this.sky03=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'skyy3'
+            'sky03'
         );
-        this.skyy01.setOrigin(0,0);
-        this.skyy2.setOrigin(0,0);
-        this.skyy3.setOrigin(0,0);
-        this.skyy01.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.skyy2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.skyy3.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.sky1.setOrigin(0,0);
+        this.sky2.setOrigin(0,0);
+        this.sky03.setOrigin(0,0);
+        this.sky1.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.sky2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.sky03.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
 
         //----------collisions---------------------
 
@@ -208,9 +217,9 @@ class Mkboratory extends Tableau{
 
 
 
-        this.skyy3.setDepth(z--);
-        this.skyy2.setDepth(z--);
-        this.skyy01.setDepth(z--);
+        this.sky03.setDepth(z--);
+        this.sky2.setDepth(z--);
+        this.sky1.setDepth(z--);
 
 
 
@@ -232,12 +241,12 @@ class Mkboratory extends Tableau{
      */
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
-        this.skyy01.tilePositionX=this.cameras.main.scrollX*0;
-        this.skyy01.tilePositionY=this.cameras.main.scrollY*0;
-        this.skyy2.tilePositionX=this.cameras.main.scrollX*0.7+100;
-        this.skyy2.tilePositionY=this.cameras.main.scrollY*0.7+100;
-        this.skyy3.tilePositionX=this.cameras.main.scrollX*0.7+500;
-        this.skyy3.tilePositionY=this.cameras.main.scrollY*0.7+500;
+        this.sky1.tilePositionX=this.cameras.main.scrollX*0;
+        this.sky1.tilePositionY=this.cameras.main.scrollY*0;
+        this.sky2.tilePositionX=this.cameras.main.scrollX*0.7;
+        this.sky2.tilePositionY=this.cameras.main.scrollY*0.7;
+        this.sky03.tilePositionX=this.cameras.main.scrollX*0.8;
+        this.sky03.tilePositionY=this.cameras.main.scrollY*0.8;
     }
 
 

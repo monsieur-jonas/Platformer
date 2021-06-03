@@ -18,21 +18,25 @@ class Tableau extends Phaser.Scene{
     this.load.image('boom', 'assets/blood.jpg');
     this.load.image('spike', 'assets/spike.png');
     this.load.image('bullet', 'assets/bullet01.png');
-    this.load.image('skyy01', 'assets/skyy01.png');
-    this.load.image('skyy2', 'assets/skyy2.png');
-    this.load.image('skyy3', 'assets/skyy3.png');
+    this.load.image('sky1', 'assets/sky1.png');
+    this.load.image('sky2', 'assets/sky2.png');
+    this.load.image('sky03', 'assets/sky03.png');
     this.load.audio('tir', 'assets/sound/sontir.wav');
     this.load.audio('pastir', 'assets/sound/sonpastir.wav');
     this.load.spritesheet('explode','assets/explode.png',
     { frameWidth: 50, frameHeight: 50  }
   );
-  this.load.spritesheet('kevin',
-  'assets/kevin06.png',
+  this.load.spritesheet('kevin','assets/kevin06.png',
   { frameWidth: 71, frameHeight: 119  }
 );
-this.load.spritesheet('player',
-'assets/mike11.png',
+this.load.spritesheet('player','assets/mike11.png',
 { frameWidth: 64, frameHeight: 125  }
+);
+this.load.spritesheet('oscar','assets/oscare02.png',
+{ frameWidth: 100, frameHeight: 160  }
+);
+this.load.spritesheet('beyan','assets/bryane.png',
+{ frameWidth: 85, frameHeight: 125  }
 );
 }
 create(){
