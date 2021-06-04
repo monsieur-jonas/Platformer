@@ -21,13 +21,13 @@ class Tableau extends Phaser.Scene{
     this.load.image('sky1', 'assets/sky1.png');
     this.load.image('sky2', 'assets/sky2.png');
     this.load.image('sky03', 'assets/sky03.png');
-    this.load.audio('tir', 'assets/sound/sontir.wav');
-    this.load.audio('oscarmal', 'assets/sound/oscarmal.wav');
-    this.load.audio('pastir', 'assets/sound/sonpastir.wav');
-    this.load.audio('oscarmeurt', 'assets/sound/oscarmeurt.wav');
-    this.load.audio('bryanmeurt', 'assets/sound/bryanmeurt.wav');
-    this.load.audio('kevinmeurt', 'assets/sound/kevinmeurt.wav');
-    this.load.audio('shlagosmeurt', 'assets/sound/shlagosmeurt.wav');
+    this.load.audio('tir', 'assets/Sound/sontir.wav');
+    this.load.audio('oscarmal', 'assets/Sound/oscarmal.wav');
+    this.load.audio('pastir', 'assets/Sound/sonpastir.wav');
+    this.load.audio('oscarmeurt', 'assets/Sound/oscarmeurt.wav');
+    this.load.audio('bryanmeurt', 'assets/Sound/bryanmeurt.wav');
+    this.load.audio('kevinmeurt', 'assets/Sound/kevinmeurt.wav');
+    this.load.audio('shlagosmeurt', 'assets/Sound/shlagosmeurt.wav');
 
     this.load.spritesheet('explode','assets/explode.png',
     { frameWidth: 50, frameHeight: 50  }
