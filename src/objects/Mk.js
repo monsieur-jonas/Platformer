@@ -11,6 +11,7 @@ class Mk extends ObjetEnnemi{
     this.dir = 1;
     this.isAlive = true;
     this.dieOnce = false;
+    this.world = scene;
     this.body.allowGravity=true;
     this.isMoving = false;
     this.vie=1;
@@ -40,6 +41,12 @@ class Mk extends ObjetEnnemi{
 
     this.anims.play('stand',true);
 
+    this.on('animationcomplete',function () {
+      if(this.anims.currentAnim.key === 'move'){
+        scene.endFadeOut();
+      }
+    });
+
 
 
   }
@@ -57,10 +64,12 @@ class Mk extends ObjetEnnemi{
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
         if(!this.isMoving){
+          this.world.player.controlLocked = true;
           this.isMoving = true;
           this.isAlive = false;
           this.flipX =false;
           this.anims.play('move', true);
+          this.world.player.anims.play('stand', true);
         }
         //this.setVelocityX(0 * this.dir);
         /*if(this.dir>0){

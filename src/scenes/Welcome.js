@@ -32,6 +32,7 @@ class Welcome extends Phaser.Scene {
 
         this.input.keyboard.on ('keydown-ENTER',function(){
             this.scene.start("labo");
+            //this.scene.fadeOut(1000, 0, 0, 0);
             this.piano.stop();
         },this);
 

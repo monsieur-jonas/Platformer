@@ -12,6 +12,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     this.scale = 1;
     this.tirer=false;
     this.onceShot=false;
+    this.controlLocked = false;
 
     this.setBodySize(this.body.width-20,this.body.height-10);
     this.setOffset(0, 10);
@@ -90,6 +91,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
   */
   move(){
 
+
+    if(!this.controlLocked){
+
     if (this.tirer && !this.onceShot){
       this.onceShot = true;
       console.log('hh');
@@ -152,7 +156,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
       // if(this.body.velocity.x == 0){
       //         this.anims.play('stand')}
 
-
+      }
     }
     shootBeam()
     {
@@ -166,7 +170,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         },500);
         setTimeout(function () {
           Tableau.current.player.rechargeSonTir = false;
-        }, 2000);
+        }, 2);
         this.tirer = true;
       }
       else {

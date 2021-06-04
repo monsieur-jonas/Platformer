@@ -16,6 +16,7 @@ let config = {
     scene: [
         new Ui(),
         new Welcome("cliquez"),
+        new Endscreen("orevoire"),
         new Mkboratory("avancez"),
 
 

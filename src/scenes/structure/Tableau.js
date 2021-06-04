@@ -61,7 +61,8 @@ create(){
   * Le joueur
   * @type {Player}
   */
-  this.player=new Player(this,0,1500);
+  //this.player=new Player(this,0,1500);
+  this.player=new Player(this,500,500);
 
   this.boutonTir = this.input.keyboard.addKey('A');
 
