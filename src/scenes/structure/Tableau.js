@@ -22,7 +22,13 @@ class Tableau extends Phaser.Scene{
     this.load.image('sky2', 'assets/sky2.png');
     this.load.image('sky03', 'assets/sky03.png');
     this.load.audio('tir', 'assets/sound/sontir.wav');
+    this.load.audio('oscarmal', 'assets/sound/oscarmal.wav');
     this.load.audio('pastir', 'assets/sound/sonpastir.wav');
+    this.load.audio('oscarmeurt', 'assets/sound/oscarmeurt.wav');
+    this.load.audio('bryanmeurt', 'assets/sound/bryanmeurt.wav');
+    this.load.audio('kevinmeurt', 'assets/sound/kevinmeurt.wav');
+    this.load.audio('shlagosmeurt', 'assets/sound/shlagosmeurt.wav');
+
     this.load.spritesheet('explode','assets/explode.png',
     { frameWidth: 50, frameHeight: 50  }
   );
@@ -41,7 +47,7 @@ this.load.spritesheet('bryan','assets/bryane.png',
 this.load.spritesheet('shlagos','assets/shlagos02.png',
 { frameWidth: 60, frameHeight: 100  }
 );
-this.load.spritesheet('mk','assets/mkcinematic.png',
+this.load.spritesheet('mk','assets/mk03.png',
 { frameWidth: 162, frameHeight: 164  }
 );
 }

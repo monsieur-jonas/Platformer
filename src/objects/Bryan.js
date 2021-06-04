@@ -22,6 +22,7 @@ class Bryan extends ObjetEnnemi{
     this.setBodySize(this.body.width/2,this.body.height);
     scene.time.addEvent({ delay: 100, callback: this.move, callbackScope: this, loop: true });
     this.move = true;
+    this.bryanmeurt = scene.sound.add('bryanmeurt');
     //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
     this.anims.create({
@@ -88,10 +89,14 @@ class Bryan extends ObjetEnnemi{
 
 }
 moinsvie(){
-  if(this.vie>0){
+
+  if(this.vie > 0){
     this.vie--;
-    if(this.vie===0){
-      this.Tmortlol();
+    if(this.vie == 0){
+      this.isAlive = false;
+      this.anims.play('die');
+      this.setVelocityX(0);
+      this.bryanmeurt.play();
     }
   }
 }

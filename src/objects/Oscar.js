@@ -14,6 +14,8 @@ class Oscar extends ObjetEnnemi{
     this.body.allowGravity=true;
     this.isMoving = false;
     this.vie=3;
+    this.gettingHit = false;
+    this.hitTimer = 0;
     //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
     this.scale = 1;
     this.setCollideWorldBounds(true);
@@ -21,7 +23,10 @@ class Oscar extends ObjetEnnemi{
     this.setOffset(-15,0)
     this.setBodySize(this.body.width/2,this.body.height);
     scene.time.addEvent({ delay: 1000, callback: this.move, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: 1, callback: this.hitMe, callbackScope: this, loop: true });
     this.move = true;
+    this.oscarmal = scene.sound.add('oscarmal');
+    this.oscarmeurt = scene.sound.add('oscarmeurt');
     //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
     this.anims.create({
@@ -40,13 +45,19 @@ class Oscar extends ObjetEnnemi{
     });
     this.anims.create({
       key: 'die',
-      frames: this.anims.generateFrameNumbers('oscar', { start: 30, end: 43 }),
+      frames: this.anims.generateFrameNumbers('oscar', { start: 30, end: 42 }),
       frameRate: 8,
     });
 
     this.anims.create({
       key: 'dmg',
-      frames: [{ key: 'oscar', frame:44}],
+      frames: [{ key: 'oscar', frame:43}],
+    });
+
+    this.on('animationcomplete',function () {
+      if(this.anims.currentAnim.key === 'die'){
+        this.anims.stop();
+      }
     });
 
     this.anims.play('stand',true);
@@ -54,6 +65,25 @@ class Oscar extends ObjetEnnemi{
 
 
   }
+
+  hitMe(){
+    if(this.isAlive) {
+      if(this.gettingHit){
+        if(this.hitTimer < 2){
+          this.anims.play('dmg', true);
+          this.oscarmal.play();
+          this.hitTimer++;
+          console.log('gettingHit');
+        } else {
+          this.gettingHit = false;
+
+          this.hitTimer = 0;
+        }
+      }
+    }
+  }
+
+
   move(){
 
 
@@ -61,18 +91,20 @@ class Oscar extends ObjetEnnemi{
     if(this.isAlive) {
       this.pos();
       this.checkSide(this.isMoving);
+
+
       if (this.scene.player.x > this.x - 350 && this.scene.player.x < this.x + 350  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
-        this.isMoving = true;
-        this.setVelocityX(100 * this.dir);
-        if(this.dir>0){
+        if(!this.gettingHit){
+          this.isMoving = true;
           this.anims.play('move', true);
-          this.flipX =true;
-        }else{
-          this.anims.play('move', true);
-          this.flipX =false;
-
+          this.setVelocityX(100 * this.dir);
+          if(this.dir>0){
+            this.flipX =true;
+          }else{
+            this.flipX =false;
+          }
         }
 
         //}
@@ -88,16 +120,21 @@ class Oscar extends ObjetEnnemi{
     }
   }
   else if(!this.isAlive && !this.dieOnce){
-  this.dieOnce = true;
+    this.dieOnce = true;
   }
 
 }
 moinsvie(){
-  if(this.vie>0){
+
+  if(this.vie > 0){
     this.vie--;
-    this.anims.play('dmg',true);
-    if(this.vie===0){
-      this.Tmortlol();
+    this.setVelocityX(0);
+    this.gettingHit = true;
+    if(this.vie == 0){
+      this.isAlive = false;
+      this.anims.play('die');
+      this.oscarmeurt.play();
+      this.setVelocityX(0);
     }
   }
 }

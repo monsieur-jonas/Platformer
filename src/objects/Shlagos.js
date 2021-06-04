@@ -20,6 +20,7 @@ class Shlagos extends ObjetEnnemi{
     this.setBounceX(1);
     this.setOffset(-15,0)
     this.setBodySize(this.body.width/2,this.body.height);
+    this.shlagosmeurt = scene.sound.add('shlagosmeurt');
     //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
     this.anims.create({
@@ -27,7 +28,7 @@ class Shlagos extends ObjetEnnemi{
       frames: this.anims.generateFrameNumbers('shlagos', { start: 0, end: 5 }),
       frameRate: 7,
       repeat: -1
-      
+
     });
     this.anims.create({
       key: 'die',
@@ -56,11 +57,13 @@ class Shlagos extends ObjetEnnemi{
       }
   }
   moinsvie(){
-    if(this.vie>0){
+
+    if(this.vie > 0){
       this.vie--;
-      this.anims.play('dmg',true);
-      if(this.vie===0){
-        this.Tmortlol();
+      if(this.vie == 0){
+        this.isAlive = false;
+        this.anims.play('die');
+        this.shlagosmeurt.play({volume:5,loop:false});
       }
     }
   }

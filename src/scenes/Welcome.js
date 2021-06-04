@@ -6,7 +6,7 @@ class Welcome extends Phaser.Scene {
     preload ()
     {
         // images
-        this.load.image('startBG', 'assets/splachart.png');
+        this.load.image('startBG', 'assets/keyart.png');
         //this.load.image('startB', 'assets/startbutton.jpg');
         this.load.image('logo', 'assets/logo.png');
         this.load.image('bouton', 'assets/bouton.png');

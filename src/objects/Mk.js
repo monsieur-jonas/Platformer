@@ -26,8 +26,8 @@ class Mk extends ObjetEnnemi{
 
     this.anims.create({
       key: 'move',
-      frames: this.anims.generateFrameNumbers('mk', { start: 8, end: 161 }),
-      frameRate: 7,
+      frames: this.anims.generateFrameNumbers('mk', { start: 8, end: 175 }),
+      frameRate: 10,
     });
     this.anims.create({
       key: 'stand',
@@ -49,20 +49,28 @@ class Mk extends ObjetEnnemi{
 
     if(this.isAlive) {
       this.pos();
-      this.checkSide(this.isMoving);
-      if (this.scene.player.x > this.x - 300 && this.scene.player.x < this.x + 300  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
+      //this.checkSide(this.isMoving);
+      if (this.scene.player.x > this.x - 300 && this.scene.player.x < this.x + 300  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 ) {
+
+
+
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
-        this.isMoving = true;
-        this.setVelocityX(0 * this.dir);
-        if(this.dir>0){
+        if(!this.isMoving){
+          this.isMoving = true;
+          this.isAlive = false;
+          this.flipX =false;
+          this.anims.play('move', true);
+        }
+        //this.setVelocityX(0 * this.dir);
+        /*if(this.dir>0){
           this.anims.play('move', true);
           this.flipX =false;
         }else{
           this.anims.play('move', true);
           this.flipX =true;
 
-        }
+        }*/
 
         //}
         /*else if(this.scene.player.y<this.y){
@@ -71,14 +79,12 @@ class Mk extends ObjetEnnemi{
 
     }
     else{
-      this.isMoving = false;
+      this.flipX = true;
       this.setVelocityX(0);
       this.anims.play('stand',true);
     }
   }
-  else if(!this.isAlive && !this.dieOnce){
-  this.dieOnce = true;
-  }
+
 
 }
 moinsvie(){

@@ -20,8 +20,9 @@ class Kevin extends ObjetEnnemi{
     this.setBounceX(1);
     this.setOffset(-15,0)
     this.setBodySize(this.body.width/2,this.body.height);
-    scene.time.addEvent({ delay: 1000, callback: this.move, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: 200, callback: this.move, callbackScope: this, loop: true });
     this.move = true;
+    this.kevinmeurt = scene.sound.add('kevinmeurt');
     //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
     this.anims.create({
@@ -56,7 +57,7 @@ class Kevin extends ObjetEnnemi{
     if(this.isAlive) {
       this.pos();
       this.checkSide(this.isMoving);
-      if (this.scene.player.x > this.x - 300 && this.scene.player.x < this.x + 300  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
+      if (this.scene.player.x > this.x - 400 && this.scene.player.x < this.x + 400  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
         this.isMoving = true;
@@ -88,10 +89,14 @@ class Kevin extends ObjetEnnemi{
 
 }
 moinsvie(){
-  if(this.vie>0){
+
+  if(this.vie > 0){
     this.vie--;
-    if(this.vie===0){
-      this.Tmortlol();
+    if(this.vie == 0){
+      this.isAlive = false;
+      this.anims.play('die');
+      this.setVelocityX(0);
+      this.kevinmeurt.play();
     }
   }
 }
