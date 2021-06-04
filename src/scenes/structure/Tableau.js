@@ -15,7 +15,7 @@ class Tableau extends Phaser.Scene{
   * Par défaut on charge un fond et le player
   */
   preload(){
-    this.load.image('boom', 'assets/blood.jpg');
+    this.load.image('boom', 'assets/blood.png');
     this.load.image('spike', 'assets/spike.png');
     this.load.image('bullet', 'assets/bullet01.png');
     this.load.image('sky1', 'assets/sky1.png');
