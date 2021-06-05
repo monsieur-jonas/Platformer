@@ -93,7 +93,7 @@ class Oscar extends ObjetEnnemi{
       this.checkSide(this.isMoving);
 
 
-      if (this.scene.player.x > this.x - 350 && this.scene.player.x < this.x + 350  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
+      if (this.scene.player.x > this.x - 470 && this.scene.player.x < this.x + 470  &&  this.scene.player.y > this.y - 150 && this.scene.player.y < this.y + 150 /*&& this.scene.player.y > this.y - 200 && this.scene.player.y < this.y + 25*/) {
         //this.runPatSound.play({volume:0.5});
         //if(this.scene.player.y>this.y){
         if(!this.gettingHit){
